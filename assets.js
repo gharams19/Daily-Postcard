@@ -22,7 +22,8 @@ router.use((request, response) => {
   var path = request.path.substring(1);
   
   var [matching] = assets.filter((asset) => {
-    return asset.name === path;
+    if(asset.name)
+      return asset.name.replace(/ /g,'%20') === path;
   });
   
   if (!matching || !matching.url) {
