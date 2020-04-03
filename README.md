@@ -1,21 +1,12 @@
-# Assets.js
-Assets.js allows you to use relative paths to serve your assets on Glitch.
+# Meme generator
+This app demonstrates a few things that are useful for Assignment 1
 
-Replacing this: `https://cdn.glitch.com/us-east-1%3A1a0f89c8-26bf-4073-baed-2b409695e959%2Ffoobar.png` :(
+It's server code allows you to use (normal) relative paths to serve your assets on Glitch,
+hiding Glitch's messy system for storing images on a separate server. 
 
-With this: `/assets/foobar.png` :)
+It also illustrates how to use the position property to overlay text on an image. 
 
-## Getting Started
-
-### Install:
-Just copy and paste the contents of `assets.js` into your project.
-
-### Example usage:
-Then reference that file as follows:
-```
-var assets = require("./assets");
-var express = require("express");
-
-var app = express();
-app.use("/assets", assets);
-```
+Finally, it includes the files we handed out so that you don't have to upload them
+  reset.css
+  the four images in /assets
+  
