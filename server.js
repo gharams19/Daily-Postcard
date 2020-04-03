@@ -13,7 +13,7 @@ app.use("/assets", assets);
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+  response.sendFile(__dirname + '/public/index.html');
 });
 
 // listen for requests :)
