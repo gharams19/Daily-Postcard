@@ -1,77 +1,40 @@
 /* styles */
-/* called by your view template */
 
+/* size of margin, border and padding is included in size of element in internal CSS calculations */
 * {
   box-sizing: border-box;
 }
+
 
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 25px;
 }
 
-h1 {
-  font-weight: bold;
-  color: pink;
-}
 
 img {
   width: 100%;
 }
 
+p.meme {
+  color: #f1f1f1; /* color given as RGB */
+  font-size: 22px;
+  
+  margin: 10px;
+  position: absolute; /* this places the element within its parent */
+  left: 0; /* coord within parent */
+  bottom: 0;  /* coord within parent */
+}
+
 div.imageWrapper {
   width: 100%;
   max-width: 400px;
+  
+  position: relative;  /* this has no effect */
+  /* except that the parent of a positioned element has to be positioned.  */ 
+  /* hey, I did not devise this crazy system, that is just how it is.  */
 }
 
-.bold {
-  font-weight: bold;
-}
-
-p {
-  max-width: 600px;
-}
-
-form {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: cyan;
-  display: inline-block;
-  width: 100%;
-  max-width: 340px;
-  border-radius: 3px;
-}
-
-input {
-  display: block;
-  margin-bottom: 10px;
-  padding: 5px;
-  width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
-}
-
-button {
-  font-size: 16px;
-  border-radius: 3px;
-  background-color: lightgrey;
-  border: 1px solid grey;
-  box-shadow: 2px 2px teal;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: yellow;
-}
-
-button:active {
-  box-shadow: none;
-}
-
-li {
-  margin-bottom: 5px;
-}
 
 footer {
   margin-top: 50px;
@@ -81,8 +44,4 @@ footer {
 
 footer > a {
   color: #BBBBBB;
-}
-
-.nicejob {
-  text-decoration: line-through;
 }
