@@ -5,10 +5,20 @@
   box-sizing: border-box;
 }
 
+h3 {
+  font-size: 38px;
+  color: PaleVioletRed;
+}
+
 
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 25px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
 }
 
 
