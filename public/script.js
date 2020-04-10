@@ -1,5 +1,27 @@
 "use strict";
 
+//CHANGE FONTS
+const diamond = '&#11046;';
+const cross = '&#10070;';
+
+let currentFontIcon = document.querySelector('#fonts span');
+console.log(currentFontIcon);
+
+document.querySelectorAll('#fonts input').forEach((i) => {
+  i.addEventListener('change', () => {
+    // console.log(i);
+    if(i.checked) {
+      console.log('checked');
+      i.previousElementSibling.innerHTML = cross;
+      currentFontIcon.innerHTML = diamond;
+      currentFontIcon = i.previousElementSibling
+      document.querySelector('#message').className = i.value;
+    }
+  })
+})
+
+//CHANGE COLOR 
+
 const colors = [
   '#e6e2cf',
   '#dbcaac',
@@ -10,17 +32,7 @@ const colors = [
   '#ECCFCF',
   '#eceeeb',
   '#BAB9B5',
-]
-
-document.querySelectorAll('#fonts input').forEach((i) => {
-  i.addEventListener('change', () => {
-    console.log(i);
-    if(i.checked) {
-      console.log('checked');
-      document.querySelector('#message').className = i.value;
-    }
-  })
-})
+];
 
 const colorBoxes = document.querySelectorAll('.color-box');
 
