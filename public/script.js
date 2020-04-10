@@ -12,9 +12,11 @@ document.querySelectorAll('#fonts input').forEach((i) => {
     // console.log(i);
     if(i.checked) {
       console.log('checked');
+      //change diamonds
       i.previousElementSibling.innerHTML = cross;
       currentFontIcon.innerHTML = diamond;
-      currentFontIcon = i.previousElementSibling
+      currentFontIcon = i.previousElementSibling;
+      
       document.querySelector('#message').className = i.value;
     }
   })
