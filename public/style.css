@@ -15,6 +15,7 @@ font-family: 'Homemade Apple', cursive;
 
 .flower {
   font-family: 'Indie Flower', cursive;
+  line-height: 1.2;
 }
 
 .script {
@@ -28,6 +29,7 @@ font-family: 'Homemade Apple', cursive;
 .apple {
   font-family: 'Homemade Apple', cursive;
   font-size: .75em;
+  line-height: 1.5em;
 }
 
 body {
@@ -42,7 +44,7 @@ header {
 }
 
 main {
-  width: 80%;
+  width: 80vh;
   margin: auto;
 }
 
@@ -62,10 +64,10 @@ main {
 }
 
 #message {
-  height: 35vh;
+  height: 40vh;
   border-left: 1px solid black;
   flex: 1;
-  padding: .5em;
+  padding: 1em;
 }
 
 h3 {

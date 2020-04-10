@@ -2,14 +2,14 @@
 
 const colors = [
   '#e6e2cf',
+  '#dbcaac',
+  '#c9cbb3',
+  '#bbc9ca',
+  '#A6A5B5',
   '#B5A6AB',
   '#ECCFCF',
-  '#A6A5B5',
+  '#eceeeb',
   '#BAB9B5',
-  '#c9cbb3',
-  '#dbcaac',
-  '#bbc9ca',
-  '#eceeeb'
 ]
 
 document.querySelectorAll('#fonts input').forEach((i) => {
@@ -22,6 +22,14 @@ document.querySelectorAll('#fonts input').forEach((i) => {
   })
 })
 
-document.querySelectorAll('.color-box').forEach((b, i) => {
+const colorBoxes = document.querySelectorAll('.color-box')
+
+colorBoxes.forEach((b, i) => {
   b.style.backgroundColor = colors[i];
+  b.addEventListener('click', () => {
+    colorBoxes.forEach((b) => {
+      b.style.border = 'none';
+    })
+    
+  })
 })
