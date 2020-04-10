@@ -30,12 +30,37 @@ font-family: 'Homemade Apple', cursive;
   font-size: .75em;
 }
 
+body {
+  font-family: 'Ariel', sans-serif;
+  width: 100%;
+}
+
 header {
   font-family: 'Dancing Script', cursive;
+  margin: 1em;
+  font-size: 2em;
+}
+
+main {
+  width: 80%;
+  margin: auto;
 }
 
 .postcard {
   background: #e6e2cf;
-  margin: 2em;
+  margin: 2em 0;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.glitchButton {
+  margin: .5em;
 }
 
