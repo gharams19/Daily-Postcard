@@ -22,11 +22,11 @@
     <main>
       <div class="postcard">
         <div id="image">
-          <form>
+          <form method="post" enctype="multipart/form-data">
             <input type="file" name="image">  
           </form>        
         </div>
-        <div contenteditable="true" id="message">
+        <div contenteditable="true" id="message" class="flower">
         </div>
       </div>
       <div class="edit">
@@ -35,7 +35,8 @@
           Choose your font
         </h3>
         <form id="fonts">
-          <input type="radio" id="flower" name="font" value="flower">
+<!--           <span>&#9670;</span> -->
+          <input type="radio" id="flower" name="font" value="flower" checked="true">
           <label for="flower" class="flower">Indie Flower</label><br>
           <input type="radio" id="script" name="font" value="script">
           <label for="script" class="script">Dancing Script</label><br>
