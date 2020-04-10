@@ -6,62 +6,10 @@
   box-sizing: border-box;
 }
 
-h3 {
-  font-size: 38px;
-  color: PaleVioletRed;
-}
-
-
-body {
-  font-family: helvetica, arial, sans-serif;
-  margin: 25px;
-}
-
-main {
-  display: flex;
-  justify-content: center;
-}
-
-
-img {
-  width: 100%;
-}
-
-p.meme {
-  color: #f1f1f1; /* color given as RGB */
-  font-size: 22px;
-  
-  margin: 10px;
-  position: absolute; /* this places the element within its parent */
-  left: 0; /* coord within parent */
-  bottom: 0;  /* coord within parent */
-}
-
-div.imageWrapper {
-  width: 100%;
-  max-width: 400px;
-  
-  position: relative;  /* this has no effect */
-  /* except that the parent of a positioned element has to be positioned.  */ 
-  /* hey, I did not devise this crazy system, that is just how it is.  */
-}
-
-
-footer {
-  margin-top: 50px;
-  padding-top: 25px;
-  border-top: 1px solid lightgrey;
-  
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-div.glitchButton {
-  width: 80px;
-}
-
-p.msg {
-  margin: 15px;
-}
+/* 
+font-family: 'Indie Flower', cursive;
+font-family: 'Dancing Script', cursive;
+font-family: 'Long Cang', cursive;
+font-family: 'Homemade Apple', cursive;
+ */
 
