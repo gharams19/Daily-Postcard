@@ -13,3 +13,29 @@ font-family: 'Long Cang', cursive;
 font-family: 'Homemade Apple', cursive;
  */
 
+.flower {
+  font-family: 'Indie Flower', cursive;
+}
+
+.script {
+  font-family: 'Dancing Script', cursive;
+}
+
+.cang {
+  font-family: 'Long Cang', cursive;
+}
+
+.apple {
+  font-family: 'Homemade Apple', cursive;
+  font-size: .75em;
+}
+
+header {
+  font-family: 'Dancing Script', cursive;
+}
+
+.postcard {
+  background: #e6e2cf;
+  margin: 2em;
+}
+
