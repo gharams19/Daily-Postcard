@@ -19,8 +19,9 @@ app.get("/", function (request, response) {
 });
 
 app.post('/upload', upload.single('photo'), (req, res) => {
-  const tempPath = req
   if(req.file) {
+    // const tempPath = req.file.path;
+    // const targetPath = path.join(__dirname, )
     res.json(req.file);
   }
   else throw 'error';
