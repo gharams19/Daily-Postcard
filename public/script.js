@@ -22,14 +22,26 @@ document.querySelectorAll('#fonts input').forEach((i) => {
   })
 })
 
-const colorBoxes = document.querySelectorAll('.color-box')
+const colorBoxes = document.querySelectorAll('.color-box');
+
+colorBoxes.item(0).style.border = '1px solid black';
+let currentColor = colorBoxes.item(0);
 
 colorBoxes.forEach((b, i) => {
   b.style.backgroundColor = colors[i];
+
   b.addEventListener('click', () => {
-    colorBoxes.forEach((b) => {
-      b.style.border = 'none';
-    })
-    
+    // colorBoxes.forEach((d) => {
+    //   d.style.border = 'none';
+    // })
+    currentColor.style.border = 'none';
+    b.style.border = '1px solid black';
+    document.querySelector('.postcard').style.backgroundColor = colors[i];
+    currentColor = b;
+  });
+  
+  b.addEventListener('mouseover', () => {
+    b.style.border 
   })
+  
 })
