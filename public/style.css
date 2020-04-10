@@ -68,6 +68,11 @@ main {
   padding: .5em;
 }
 
+.edit {
+  display: flex;
+  justify-content: space-between;
+}
+
 footer {
   position: absolute;
   bottom: 0;
