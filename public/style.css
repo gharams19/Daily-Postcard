@@ -49,6 +49,11 @@ main {
 .postcard {
   background: #e6e2cf;
   margin: 2em 0;
+  display: flex;
+}
+
+#message {
+  height: 30vh;
 }
 
 footer {
