@@ -63,6 +63,15 @@ main {
   justify-content: center;
 }
 
+#image form {
+  height: 90%;
+  width: 90%;
+  border: 1px dashed black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #message {
   height: 40vh;
   border-left: 1px solid black;

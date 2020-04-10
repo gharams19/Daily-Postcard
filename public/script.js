@@ -41,7 +41,17 @@ colorBoxes.forEach((b, i) => {
   });
   
   b.addEventListener('mouseover', () => {
-    b.style.border 
+    b.style.border = '1px dashed black';
+    document.querySelector('.postcard').style.backgroundColor = colors[i];
+  });
+  b.addEventListener('mouseout', () => {
+    if(b != currentColor) {
+      b.style.border = 'none';
+      document.querySelector('.postcard').style.backgroundColor = currentColor.style.backgroundColor;
+    } else {
+      b.style.border = '1px solid black';
+    }
   })
+  
   
 })
