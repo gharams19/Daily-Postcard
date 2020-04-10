@@ -21,3 +21,7 @@ document.querySelectorAll('#fonts input').forEach((i) => {
     }
   })
 })
+
+document.querySelectorAll('.color-box').forEach((b, i) => {
+  b.style.backgroundColor = colors[i];
+})
