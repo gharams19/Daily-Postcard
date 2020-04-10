@@ -6,7 +6,7 @@ var express = require('express');
 var app = express();
 var assets = require('./assets');
 const multer = require('multer');
-const upload = multer({dest: __dirname + '/uploads'});
+const upload = multer({dest: __dirname + '/assets/images'});
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));

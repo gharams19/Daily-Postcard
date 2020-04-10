@@ -22,9 +22,10 @@
     <main>
       <div class="postcard">
         <div id="image">
-          <form method="post" enctype="multipart/form-data">
+          <form action="/upload" method="post" enctype="multipart/form-data">
             <button class="btn">Choose Image</button>
             <input type="file" accept="image/*" name="photo"/> 
+            <input type="submit">
           </form>        
         </div>
         <div contenteditable="true" placeholder="Write your message here!" id="message" class="flower">
