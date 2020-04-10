@@ -6,7 +6,15 @@ var express = require('express');
 var app = express();
 var assets = require('./assets');
 const multer = require('multer');
-const upload = multer({dest: __dirname + '/assets/images'});
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname + '/assets/images')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({storage: storage})
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
