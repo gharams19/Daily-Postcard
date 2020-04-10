@@ -82,4 +82,7 @@ function sendImg(data) {
   };
 }
 
-document.querySelector("#image form").addEventListener("submit", () => {});
+document.querySelector("#image form").addEventListener("submit", () => {
+  console.log(document.querySelector('#imgUpload'));
+  return false;
+});
