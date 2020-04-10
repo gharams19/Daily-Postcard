@@ -63,7 +63,7 @@ main {
   justify-content: center;
 }
 
-/* #image form {
+#image form {
   height: 90%;
   width: 90%;
   border: 1px dashed black;
@@ -73,7 +73,7 @@ main {
   position: relative;
   overflow: hidden;
 }
- */
+
 .btn {
   border: none;
 /*   color: gray; */
