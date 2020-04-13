@@ -54,7 +54,6 @@ main {
   display: flex;
   border-radius: 10px;
   padding: 1em;
-/*   overflow: auto; */
 }
 
 .image {
@@ -111,7 +110,7 @@ main {
 }
 
 #message {
-  height: 40vh;
+  min-height: 40vh;
   border-left: 1px solid black;
   flex: 1;
   padding: 1em;
@@ -183,7 +182,7 @@ footer {
   }
   .postcard {
     flex-flow: column;
-    height: 60vh;
+    min-height: 60vh;
   }
   
   #message {
