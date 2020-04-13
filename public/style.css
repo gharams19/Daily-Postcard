@@ -54,6 +54,7 @@ main {
   display: flex;
   border-radius: 10px;
   padding: 1em;
+/*   overflow: auto; */
 }
 
 .image {
@@ -101,6 +102,7 @@ main {
   padding: 8px 20px;
   border-radius: 0px;
   font-weight: bold;
+  margin: .5em;
 }
 
 .upload .btn {
