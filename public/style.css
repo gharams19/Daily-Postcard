@@ -69,6 +69,14 @@ main {
   max-height: 100%;
 }
 
+.image form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
 .image form input[type=file] {
   font-size: 200px;
   position: absolute;
@@ -85,11 +93,6 @@ main {
   height: 90%;
   width: 90%;
   border: 1px dashed black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
 }
 
 .btn {
