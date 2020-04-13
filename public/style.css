@@ -130,6 +130,10 @@ h3 {
   justify-content: space-between;
 }
 
+.fonts {
+  margin-right: 1em;
+}
+
 .fonts input[type="radio"] {
   opacity: 0;
   position: fixed;
@@ -168,8 +172,30 @@ footer {
 
 
 @media screen and (max-width: 525px) {
-  body {
+/*   body {
     background-color: olive;
+  } */
+  main {
+    width: auto;
+    margin: 1em;
+  }
+  .postcard {
+    flex-flow: column;
+    height: 60vh;
+  }
+  
+  #message {
+    border-top: 1px solid black;
+    border-left: none;
+    height: 50%;
+  }
+  
+  footer {
+    position: relative;
+  }
+  
+  .fonts {
+    flex-shrink: 0;
   }
 }
 
