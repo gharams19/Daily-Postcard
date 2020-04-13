@@ -56,19 +56,32 @@ main {
   padding: 1em;
 }
 
-#image {
+.image {
   flex: 1;
   display: flex;
+  flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-#image img {
+.image img {
   max-width: 100%;
   max-height: 100%;
 }
 
-/* #image form {
+.image form input[type=file] {
+  font-size: 200px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.upload {
+  justify-content: center;
+}
+
+.upload form {
   height: 90%;
   width: 90%;
   border: 1px dashed black;
@@ -77,26 +90,20 @@ main {
   justify-content: center;
   position: relative;
   overflow: hidden;
-} */
+}
 
 .btn {
-  border: none;
-/*   color: gray; */
+  border: 1px solid;
   background-color: Transparent;
   padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 1.25em;
+  border-radius: 0px;
   font-weight: bold;
 }
 
-#image form input[type=file] {
-  font-size: 200px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
+.upload .btn {
+    border: none;
+    font-size: 1.25em;
 }
-
 
 #message {
   height: 40vh;
