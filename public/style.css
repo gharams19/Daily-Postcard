@@ -35,6 +35,9 @@ font-family: 'Homemade Apple', cursive;
 body {
   font-family: 'Ariel', sans-serif;
   width: 100%;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
 }
 
 header {
@@ -46,6 +49,7 @@ header {
 main {
   width: 80vh;
   margin: auto;
+  flex: 1;
 }
 
 .postcard {
@@ -166,8 +170,6 @@ h3 {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
