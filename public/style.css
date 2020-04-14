@@ -49,8 +49,8 @@ main {
 }
 
 .postcard {
-  background: #eceeeb;
-/*   background: #e6e2cf; */
+/*   background: #eceeeb; */
+  background: #e6e2cf;
   margin: 2em 0;
   display: flex;
   border-radius: 10px;
@@ -127,8 +127,8 @@ h3 {
 }
 
 .edit {
-/*   display: flex; */
-  display: none;
+  display: flex;
+/*   display: none; */
   justify-content: space-between;
 }
 
