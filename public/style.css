@@ -179,6 +179,9 @@ footer {
   margin: .5em;
 }
 
+.hide {
+  display: none !important;
+}
 
 @media screen and (max-width: 525px) {
 /*   body {
@@ -193,10 +196,14 @@ footer {
     min-height: 60vh;
   }
   
+  .image {
+    height: 50%;
+  }
+  
   #message {
     border-top: 1px solid black;
     border-left: none;
-    height: 50%;
+/*     height: 50%; */
   }
   
   .edit {

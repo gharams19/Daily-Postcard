@@ -69,20 +69,29 @@ colorBoxes.forEach((b, i) => {
   });
 });
 
-//UPLOAD IMAGE
-function sendImg(data) {
-  console.log("sending img");
+// DISPLAY
 
-  let xhr = new XMLHttpRequest();
-  xhr.open("POST", "/upload", true);
-  xhr.setRequestHeader("Content-Type", "multipart/form-data");
-  xhr.onreadystatechange = () => {
-    if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
-    }
-  };
-}
+document.querySelector('#save').addEventListener('click', () => {
+  document.querySelector('.edit').classList.add('hide');
+  document.querySelector('.image form').classList.add('hide');
+  document.querySelector('#message').contenteditable = false; //doesnt work 
+  document.querySelector('h1').textContent = 'Daily Postcard';
+})
 
-document.querySelector("#image form").addEventListener("submit", () => {
-  console.log(document.querySelector('#imgUpload'));
-  return false;
-});
+// //UPLOAD IMAGE
+// function sendImg(data) {
+//   console.log("sending img");
+
+//   let xhr = new XMLHttpRequest();
+//   xhr.open("POST", "/upload", true);
+//   xhr.setRequestHeader("Content-Type", "multipart/form-data");
+//   xhr.onreadystatechange = () => {
+//     if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
+//     }
+//   };
+// }
+
+// document.querySelector("#image form").addEventListener("submit", () => {
+//   console.log(document.querySelector('#imgUpload'));
+//   return false;
+// });
