@@ -103,6 +103,7 @@ main {
   border-radius: 0px;
   font-weight: bold;
   margin: .5em;
+  flex-shrink: 0;
 }
 
 .upload .btn {
@@ -130,10 +131,16 @@ h3 {
   display: flex;
 /*   display: none; */
   justify-content: space-between;
+  align-items: flex-start;
+}
+
+.edit .btn {
+  margin-top: 2em;
 }
 
 .fonts {
   margin-right: 1em;
+  flex-shrink: 0;
 }
 
 .fonts input[type="radio"] {
@@ -192,12 +199,12 @@ footer {
     height: 50%;
   }
   
-  footer {
-    position: relative;
+  .edit {
+    flex-flow: row wrap;
   }
   
-  .fonts {
-    flex-shrink: 0;
+  footer {
+    position: relative;
   }
 }
 

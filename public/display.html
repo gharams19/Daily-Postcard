@@ -1,0 +1,47 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Postcard App</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Homemade+Apple|Indie+Flower|Long+Cang&display=swap" rel="stylesheet">
+  </head>
+  
+  <body>
+    <header>
+      <h1>
+         Daily Postcard Creator
+      </h1>
+    </header>
+    <main>
+      <div class="postcard">
+        <div class="image">
+<!--           <img src="https://cdn.glitch.com/18981859-c32e-4a00-8ee3-1b5207a9d2e7%2Fbridge.jpg?v=1586814596170" alt="user uploaded img"/> -->
+          <form action="./upload" method="post" enctype="multipart/form-data">
+            <button class="btn">Replace Image</button>
+            <input id="imgUpload" type="file" accept="image/*" name="photo"/> 
+          </form>        
+        </div>
+        <div placeholder="Write your message here!" id="message" class="flower"></div> <!-- no white space for placeholder -->
+      </div>
+      </main>
+    
+ 
+    <footer>
+      <p class="msg">
+         Made on Glitch!
+      </p>
+       <!-- adds the glitch button at the bottom -->
+    <div class="glitchButton"></div>
+    <script src="https://button.glitch.me/button.js"></script>
+    <script src="./script.js"></script>
+    </footer>
+  
+  </body>
+</html>
