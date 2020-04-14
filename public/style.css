@@ -124,7 +124,7 @@ main {
 }
 
 h3 {
-  margin-bottom: .5em;
+  margin: .5em 0;
 }
 
 .edit {
@@ -196,8 +196,12 @@ footer {
     min-height: 60vh;
   }
   
-  .image {
-    height: 50%;
+  .upload {
+    height: 40vh;
+  }
+  
+  .upload form {
+    margin: 1em 0;
   }
   
   #message {
