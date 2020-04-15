@@ -41,7 +41,9 @@ app.post('/upload', upload.single('newImage'), function (request, response) {
     response.end("recieved "+request.file.originalname);
   }
   else throw 'error';
-})
+});
+
+app.post('/saveDisplay', function)
 
 
 // listen for requests :)

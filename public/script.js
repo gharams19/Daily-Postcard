@@ -76,11 +76,19 @@ document.querySelector('#save').addEventListener('click', () => {
   // document.querySelector('.image form').classList.add('hide');
   // document.querySelector('#message').removeAttribute("contenteditable"); 
   // document.querySelector('h1').textContent = 'Daily Postcard';
-  // let data = {
-  //   color:
-  //   font: 
-  //   message: document.querySelector('#message').textContent
-  // }
+  let msg = document.querySelector('#message');
+  let img = document.querySelector('#cardImg');
+  let data = {
+    image: img.src,
+    color: currentColor,
+    font: msg.className,
+    message: msg.textContent
+  }
+  
+  var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+  xmlhttp.open("POST", '/saveDisplay');
+  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xmlhttp.send(JSON.stringify(data));
 })
 
 // UPLOAD IMAGE
