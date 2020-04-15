@@ -78,20 +78,26 @@ document.querySelector('#save').addEventListener('click', () => {
   document.querySelector('h1').textContent = 'Daily Postcard';
 })
 
-// //UPLOAD IMAGE
-// function sendImg(data) {
-//   console.log("sending img");
+// UPLOAD IMAGE
+document.querySelector('#imgUpload').addEventListener('change', () => {
+  
+    // get the file with the file dialog box
+    const selectedFile = document.querySelector('#imgUpload').files[0];
+    // store it in a FormData object
+    const formData = new FormData();
+    formData.append('newImage',selectedFile, selectedFile.name);
 
-//   let xhr = new XMLHttpRequest();
-//   xhr.open("POST", "/upload", true);
-//   xhr.setRequestHeader("Content-Type", "multipart/form-data");
-//   xhr.onreadystatechange = () => {
-//     if (this.readyState === XMLHttpRequest.DONE && this.status == 200) {
-//     }
-//   };
-// }
+    // build an HTTP request data structure
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/upload", true);
+    xhr.onloadend = function(e) {
+        // Get the server's response to the upload
+        console.log(xhr.responseText);
+        let newImage = document.getElementById("cardImage");
+        newImage.src = "https://formdata-postcard.glitch.me/images/"+selectedFile.name;
+        //newImage.classList.add("leftSideImage");
+    }
+    // actually send the request
+    xhr.send(formData);
+});
 
-// document.querySelector("#image form").addEventListener("submit", () => {
-//   console.log(document.querySelector('#imgUpload'));
-//   return false;
-// });
