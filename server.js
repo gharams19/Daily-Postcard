@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 const assets = require('./assets');
 const multer = require('multer');
-
+const fs = require('fs');
 
 
 let storage = multer.diskStorage({
@@ -44,7 +44,13 @@ app.post('/upload', upload.single('newImage'), function (request, response) {
 });
 
 app.post('/saveDisplay', function (req, res) {
-  
+  fs.writeFile('./public/display.json', JSON.stringify(req.body), (err) => {
+    if(err) {
+      res.status(404).send('postcard not saved');
+    } else {
+      res.send('postcard saved');
+    }
+  })
   
 });
 
