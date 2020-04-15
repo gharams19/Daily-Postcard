@@ -2,22 +2,29 @@
 // where your node app starts
 
 // init project
-var express = require('express');
-var app = express();
-var assets = require('./assets');
+const express = require('express');
+const app = express();
+const assets = require('./assets');
 const multer = require('multer');
-const storage = multer.diskStorage({
+
+
+
+let storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, __dirname + '/assets/images')
+    cb(null, __dirname+'/images')    
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
   }
 })
-const upload = multer({storage: storage})
+// let upload = multer({dest: __dirname+"/assets"});
+let upload = multer({storage: storage});
+
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
+
+app.use("/images",express.static('images'));
 
 app.use("/assets", assets);
 
@@ -26,14 +33,16 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/public/index.html');
 });
 
-app.post('/upload', upload.single('photo'), (req, res) => {
-  if(req.file) {
-    // const tempPath = req.file.path;
-    // const targetPath = path.join(__dirname, )
-    res.json(req.file);
+
+app.post('/upload', upload.single('newImage'), function (request, response) {
+  console.log("Recieved",request.file.originalname,request.file.size,"bytes")
+  if(request.file) {
+    // is automatically stored in /images, even though we can't see it 
+    response.end("recieved "+request.file.originalname);
   }
   else throw 'error';
 })
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {

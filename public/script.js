@@ -74,7 +74,7 @@ colorBoxes.forEach((b, i) => {
 document.querySelector('#save').addEventListener('click', () => {
   document.querySelector('.edit').classList.add('hide');
   document.querySelector('.image form').classList.add('hide');
-  document.querySelector('#message').contenteditable = false; //doesnt work 
+  document.querySelector('#message').removeAttribute("contenteditable"); //doesnt work 
   document.querySelector('h1').textContent = 'Daily Postcard';
 })
 
@@ -86,6 +86,8 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
     // store it in a FormData object
     const formData = new FormData();
     formData.append('newImage',selectedFile, selectedFile.name);
+  
+    let button = document.querySelector('.btn');
 
     // build an HTTP request data structure
     const xhr = new XMLHttpRequest();
@@ -93,10 +95,14 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
     xhr.onloadend = function(e) {
         // Get the server's response to the upload
         console.log(xhr.responseText);
-        let newImage = document.getElementById("cardImage");
+        let newImage = document.querySelector("#cardImg");
         newImage.src = "https://formdata-postcard.glitch.me/images/"+selectedFile.name;
-        //newImage.classList.add("leftSideImage");
+        newImage.style.display = 'block';
+        document.querySelector('.image').classList.remove('upload');
+        button.textContent = 'Replace Image';
     }
+  
+    button.textContent = 'Uploading...';
     // actually send the request
     xhr.send(formData);
 });

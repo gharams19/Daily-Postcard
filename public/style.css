@@ -69,9 +69,10 @@ main {
   justify-content: space-between;
 }
 
-.image img {
+#cardImg {
   max-width: 100%;
   max-height: 100%;
+  display: none;
 }
 
 .image form {
