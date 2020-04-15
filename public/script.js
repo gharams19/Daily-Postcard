@@ -72,10 +72,15 @@ colorBoxes.forEach((b, i) => {
 // DISPLAY
 
 document.querySelector('#save').addEventListener('click', () => {
-  document.querySelector('.edit').classList.add('hide');
-  document.querySelector('.image form').classList.add('hide');
-  document.querySelector('#message').removeAttribute("contenteditable"); //doesnt work 
-  document.querySelector('h1').textContent = 'Daily Postcard';
+  // document.querySelector('.edit').classList.add('hide');
+  // document.querySelector('.image form').classList.add('hide');
+  // document.querySelector('#message').removeAttribute("contenteditable"); 
+  // document.querySelector('h1').textContent = 'Daily Postcard';
+  // let data = {
+  //   color:
+  //   font: 
+  //   message: document.querySelector('#message').textContent
+  // }
 })
 
 // UPLOAD IMAGE
