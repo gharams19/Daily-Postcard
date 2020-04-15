@@ -43,7 +43,10 @@ app.post('/upload', upload.single('newImage'), function (request, response) {
   else throw 'error';
 });
 
-app.post('/saveDisplay', function)
+app.post('/saveDisplay', function (req, res) {
+  
+  
+});
 
 
 // listen for requests :)
