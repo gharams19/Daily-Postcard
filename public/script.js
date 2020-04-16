@@ -90,6 +90,7 @@ document.querySelector('#save').addEventListener('click', () => {
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xmlhttp.onloadend = function(e) {
     console.log(xmlhttp.responseText);
+    window.location = "https://postcard-app.glitch.me/display.html";
   }
   xmlhttp.send(JSON.stringify(data));
 })
