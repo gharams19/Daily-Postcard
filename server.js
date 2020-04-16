@@ -44,7 +44,7 @@ app.post('/upload', upload.single('newImage'), function (request, response) {
 });
 
 app.post('/saveDisplay', function (req, res) {
-  fs.writeFile('./public/display.json', JSON.stringify(req.body), (err) => {
+  fs.writeFile(__dirname + '/public/display.json', JSON.stringify(req.body), (err) => {
     if(err) {
       res.status(404).send('postcard not saved');
     } else {
