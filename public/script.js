@@ -88,6 +88,9 @@ document.querySelector('#save').addEventListener('click', () => {
   var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
   xmlhttp.open("POST", '/saveDisplay');
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xmlhttp.onloadend = function(e) {
+    console.log(xmlhttp.responseText);
+  }
   xmlhttp.send(JSON.stringify(data));
 })
 
