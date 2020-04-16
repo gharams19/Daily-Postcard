@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const assets = require('./assets');
 const multer = require('multer');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 
 
@@ -20,6 +21,7 @@ let storage = multer.diskStorage({
 // let upload = multer({dest: __dirname+"/assets"});
 let upload = multer({storage: storage});
 
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -44,7 +46,7 @@ app.post('/upload', upload.single('newImage'), function (request, response) {
 });
 
 app.post('/saveDisplay', function (req, res) {
-  console.log(req)
+  console.log(req.body);
   fs.writeFile(__dirname + '/public/display.json', JSON.stringify(req.body), (err) => {
     if(err) {
       res.status(404).send('postcard not saved');

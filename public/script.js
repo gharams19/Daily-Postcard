@@ -80,11 +80,11 @@ document.querySelector('#save').addEventListener('click', () => {
   let img = document.querySelector('#cardImg');
   let data = {
     image: img.src,
-    color: currentColor,
+    color: currentColor.style.backgroundColor,
     font: msg.className,
     message: msg.textContent
   }
-  
+  console.log(data);
   var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
   xmlhttp.open("POST", '/saveDisplay');
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
