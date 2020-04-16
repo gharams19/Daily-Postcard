@@ -21,7 +21,7 @@ let storage = multer.diskStorage({
 // let upload = multer({dest: __dirname+"/assets"});
 let upload = multer({storage: storage});
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
