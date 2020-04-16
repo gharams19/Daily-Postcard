@@ -112,7 +112,7 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
         // Get the server's response to the upload
         console.log(xhr.responseText);
         let newImage = document.querySelector("#cardImg");
-        newImage.src = "https://formdata-postcard.glitch.me/images/"+selectedFile.name;
+        newImage.src = "https://postcard-app.glitch.me/images/"+selectedFile.name;
         newImage.style.display = 'block';
         document.querySelector('.image').classList.remove('upload');
         button.textContent = 'Replace Image';
