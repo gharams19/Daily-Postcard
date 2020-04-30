@@ -1,20 +1,22 @@
 "use strict";
 
-// 
-const diamond = "&#11046;";
-const cross = "&#10070;";
+// Unicode characters we will use
+const diamond = "\u27e1";
+const cross = "\u10070";
 
+// querySelector returns the first element that matches the 
+// given CSS selector; in this case, the first span with id "fonts"
 let currentFontIcon = document.querySelector("#fonts span");
-console.log(currentFontIcon);
 
+// let the font buttons listen for status change
 document.querySelectorAll("#fonts input").forEach(i => {
   i.addEventListener("change", () => {
     // console.log(i);
     if (i.checked) {
       console.log("checked");
       //change diamonds
-      i.previousElementSibling.innerHTML = cross;
-      currentFontIcon.innerHTML = diamond;
+      i.previousElementSibling.textContent = cross;
+      currentFontIcon.textContent = diamond;
       currentFontIcon = i.previousElementSibling;
 
       document.querySelector("#message").className = i.value;
