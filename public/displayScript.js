@@ -5,7 +5,7 @@
 
 let xhr = new XMLHttpRequest();
 
-xhr.open("GET", '/postcardData.json');
+xhr.open("GET", 'postcardData.json');
 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 // set up callback function that will run when the HTTP response comes back

@@ -1,6 +1,6 @@
 "use strict";
 
-//CHANGE FONTS
+// 
 const diamond = "&#11046;";
 const cross = "&#10070;";
 
@@ -69,13 +69,8 @@ colorBoxes.forEach((b, i) => {
   });
 });
 
-// DISPLAY
-
+// UPLOAD postcard data
 document.querySelector('#save').addEventListener('click', () => {
-  // document.querySelector('.edit').classList.add('hide');
-  // document.querySelector('.image form').classList.add('hide');
-  // document.querySelector('#message').removeAttribute("contenteditable"); 
-  // document.querySelector('h1').textContent = 'Daily Postcard';
   let msg = document.querySelector('#message');
   let img = document.querySelector('#cardImg');
   let data = {

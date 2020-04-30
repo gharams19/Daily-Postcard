@@ -63,7 +63,7 @@ app.post('/saveDisplay', function (req, res) {
     if(err) {
       res.status(404).send('postcard not saved');
     } else {
-      console.log("all well")
+      res.send("All well")
     }
   })
   
@@ -72,7 +72,6 @@ app.post('/saveDisplay', function (req, res) {
 
 // The GET AJAX query is handled by the static server, since the 
 // file postcardData.json is stored in /public
-
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
