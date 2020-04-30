@@ -82,7 +82,7 @@ document.querySelector('#save').addEventListener('click', () => {
     image: img.src,
     color: currentColor.style.backgroundColor,
     font: msg.className,
-    message: msg.textContent
+    message: msg.innerText
   }
   console.log(data);
   var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 

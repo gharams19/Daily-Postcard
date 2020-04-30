@@ -24,7 +24,7 @@ let upload = multer({storage: storage});
 // begin constructing the server pipeline
 const app = express();
 
-app.use(bodyParser.json());
+
 
 // Serve static files out of public directory
 app.use(express.static('public'));
@@ -54,14 +54,16 @@ app.post('/upload', upload.single('newImage'), function (request, response) {
 
 
 // Handle a post request containing JSON
+app.use(bodyParser.json());
+// gets JSON data into req.body
 app.post('/saveDisplay', function (req, res) {
   console.log(req.body);
   // write the JSON into postcardData.json
-  fs.writeFile(__dirname + 'public/postcardData.json', JSON.stringify(req.body), (err) => {
+  fs.writeFile(__dirname + '/public/postcardData.json', JSON.stringify(req.body), (err) => {
     if(err) {
       res.status(404).send('postcard not saved');
     } else {
-      res.send('postcard saved');
+      console.log("all well")
     }
   })
   
