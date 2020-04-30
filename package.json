@@ -1,7 +1,4 @@
 {
-  "name": "assets.js",
-  "version": "0.0.1",
-  "description": "Assets.js library",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
