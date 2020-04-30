@@ -1,11 +1,19 @@
+// This code runs as soon as the page is loaded, when 
+// the script tag in the HTML file is executed. 
+
+// It sends a GET request for the JSON file postcardData.json 
+
 let xhr = new XMLHttpRequest();
 
-xhr.open("GET", '/display.json');
+xhr.open("GET", '/postcardData.json');
 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 xhr.onloadend = function(e) {
   console.log(xhr.responseText);
+  
+  // responseText is a string
   let data = JSON.parse(xhr.responseText);
-  console.log(data);
+  
+  // get the data 
   let postcardImage = document.getElementById("cardImg");
   postcardImage.style.display = 'block';
   postcardImage.src = data.image;
