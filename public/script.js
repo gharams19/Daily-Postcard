@@ -2,21 +2,26 @@
 
 // Unicode characters we will use
 const diamond = "\u27e1";
-const cross = "\u10070";
+const cross = "\u2756";
 
 // querySelector returns the first element that matches the 
 // given CSS selector; in this case, the first span with id "fonts"
 let currentFontIcon = document.querySelector("#fonts span");
 
-// let the font buttons listen for status change
+// add event listeners
 document.querySelectorAll("#fonts input").forEach(i => {
+  // if status of one button changes, this will be called
   i.addEventListener("change", () => {
-    // console.log(i);
+    // because these are radio buttons, i.checked is true for 
+    // the one selected
     if (i.checked) {
       console.log("checked");
-      //change diamonds
+      // change diamonds
+      // put the crossed diamond in front of this choice
       i.previousElementSibling.textContent = cross;
+      // put the regular diamond in front of the last choice
       currentFontIcon.textContent = diamond;
+      // and remember that this is the current choice
       currentFontIcon = i.previousElementSibling;
 
       document.querySelector("#message").className = i.value;
@@ -38,6 +43,7 @@ const colors = [
   "#BAB9B5"
 ];
 
+// querySelectorAll returns a list of all the elements with class color-box
 const colorBoxes = document.querySelectorAll(".color-box");
 
 colorBoxes.item(0).style.border = "1px solid black";
@@ -46,6 +52,7 @@ let currentColor = colorBoxes.item(0);
 colorBoxes.forEach((b, i) => {
   b.style.backgroundColor = colors[i];
 
+  
   b.addEventListener("click", () => {
     // colorBoxes.forEach((d) => {
     //   d.style.border = 'none';
@@ -72,6 +79,7 @@ colorBoxes.forEach((b, i) => {
 });
 
 // UPLOAD postcard data
+// When the user hits the button...
 document.querySelector('#save').addEventListener('click', () => {
   let msg = document.querySelector('#message');
   let img = document.querySelector('#cardImg');
@@ -82,13 +90,19 @@ document.querySelector('#save').addEventListener('click', () => {
     message: msg.innerText
   }
   console.log(data);
-  var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+  
+  // new HttpRequest instance 
+  var xmlhttp = new XMLHttpRequest();   
   xmlhttp.open("POST", '/saveDisplay');
+  // important to set this for body-parser
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  // setup callback function
   xmlhttp.onloadend = function(e) {
     console.log(xmlhttp.responseText);
+    // immediately switch to display view
     window.location = "https://postcard-app.glitch.me/display.html";
   }
+  // all set up!  Send off the HTTP request
   xmlhttp.send(JSON.stringify(data));
 })
 
