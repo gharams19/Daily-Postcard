@@ -136,7 +136,13 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
     xhr.send(formData);
 });
 function generateRandomString(){
-  document.getElementById("RandomString").innerHTML = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
-  
+ var result           = '';
+ var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+ var charactersLength = characters.length;
+ for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}  
 }
 
