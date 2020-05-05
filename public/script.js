@@ -1,5 +1,6 @@
 "use strict";
 
+generateRandomString();
 // Unicode characters we will use
 const diamond = "\u27e1";
 const cross = "\u2756";
@@ -134,4 +135,8 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
     // actually send the request
     xhr.send(formData);
 });
+function generateRandomString(){
+  document.getElementById("RandomString").innerHTML = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+  
+}
 
