@@ -6,6 +6,7 @@ const express = require('express');
 
 const multer = require('multer');
 const bodyParser = require('body-parser');
+const sql = require("sqlite3").verbose();
 const fs = require('fs');
 
 
