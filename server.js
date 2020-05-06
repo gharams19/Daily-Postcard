@@ -56,9 +56,10 @@ function handlePostcard(request, response, next) {
 }
 
 app.get("/", function (request, response) {
-  response.sendFile(__dirname + "/public/)
-})
-// app.get("/postcard", handlePostcard);
+  response.sendFile(__dirname + "/public/creator.html");
+});
+
+app.get("/postcard/data?*", handlePostcard);
 
 
 
@@ -80,7 +81,7 @@ app.post("/newPostcard", function(request, response, next) {
   );
 
   cmd =
-    "INSERT INTO PostcardTable (listMessage, listImage, listColor, listFont) VALUES (?,?,?,?)";
+    "INSERT INTO PostcardTable (message, image, color, font) VALUES (?,?,?,?)";
   postcardDB.run(cmd, message, image, color, font, function(err) {
     if (err) {
       console.log("DB insert error", err.message);
@@ -91,10 +92,11 @@ app.post("/newPostcard", function(request, response, next) {
     }
   });
 });
-// app.all("*", function(request, response) {
-//   response.status(404);
-//   response.send("This is not what you're looking for");
-// });
+app.all("*", function(request, response) {
+  response.status(404);
+  response.send("This is not what you're looking for");
+});
+
 let storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, __dirname + "/images");
@@ -139,23 +141,23 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
 });
 
 // Handle a post request containing JSON
-app.use(bodyParser.json());
-// gets JSON data into req.body
-app.post("/saveDisplay", function(req, res) {
-  console.log(req.body);
-  // write the JSON into postcardData.json
-  fs.writeFile(
-    __dirname + "/public/postcardData.json",
-    JSON.stringify(req.body),
-    err => {
-      if (err) {
-        res.status(404).send("postcard not saved");
-      } else {
-        res.send("All well");
-      }
-    }
-  );
-});
+// app.use(bodyParser.json());
+// // gets JSON data into req.body
+// app.post("/saveDisplay", function(req, res) {
+//   console.log(req.body);
+//   // write the JSON into postcardData.json
+//   fs.writeFile(
+//     __dirname + "/public/postcardData.json",
+//     JSON.stringify(req.body),
+//     err => {
+//       if (err) {
+//         res.status(404).send("postcard not saved");
+//       } else {
+//         res.send("All well");
+//       }
+//     }
+//   );
+// });
 
 // The GET AJAX query is handled by the static server, since the
 // file postcardData.json is stored in /public

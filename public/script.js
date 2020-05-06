@@ -1,5 +1,4 @@
 "use strict";
-  // <script src="./displayScript.js"></script>
 
 
 // generateRandomString();
@@ -129,7 +128,7 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
         // Get the server's response to the upload
         console.log(xhr.responseText);
         let newImage = document.querySelector("#cardImg");
-        newImage.src = "../images/"+selectedFile.name;
+        newImage.src = "../images/" +selectedFile.name;
         newImage.style.display = 'block';
         document.querySelector('.image').classList.remove('upload');
         button.textContent = 'Replace Image';
@@ -140,4 +139,5 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
     xhr.send(formData);
 });
 
+  <script src="./displayScript.js"></script>
 
