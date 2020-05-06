@@ -1,5 +1,9 @@
 "use strict";
 
+function load() {
+  getPostcardFromSever();
+}
+
 
 // generateRandomString();
 // Unicode characters we will use
@@ -80,6 +84,28 @@ colorBoxes.forEach((b, i) => {
   });
 });
 
+function getPostcardFromSever() {
+  let url = "/getPostcard"
+  let xhr = new XMLHttpRequest;
+  xhr.open("GET", url)
+  xhr.addEventListener("load", function() {
+    if(xhr.status == 200) {
+      let responseStr = xhr.responseText;
+      console.log(responseStr);
+      let postcardTable = JSON.parse(responseStr);
+      document.getElementById("message").innerText = postcardTable.message;
+      document.getElementById("cardImg").src = postcardTable.image;
+      document.querySelector(".postcard").style.backgroundColor = postcardTable.color;
+      document.getElementById("message").fontFamily = postcardTable.font;
+    }
+    else {
+      console.log("Error fetching table");
+      console.log(xhr.responseText);
+    }
+  });
+  xhr.send();
+}
+
 // UPLOAD postcard data
 // When the user hits the button...
 document.querySelector('#save').addEventListener('click', () => {
@@ -103,7 +129,7 @@ document.querySelector('#save').addEventListener('click', () => {
     console.log(xmlhttp.responseText);
     // immediately switch to display view
     window.location = "../display.html";
-    // getPostcardFromSever();
+    getPostcardFromSever();
     
   }
   // all set up!  Send off the HTTP request
@@ -139,5 +165,5 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
     xhr.send(formData);
 });
 
-  <script src="./displayScript.js"></script>
+  // <script src="./displayScript.js"></script>
 
