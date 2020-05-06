@@ -135,14 +135,5 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
     // actually send the request
     xhr.send(formData);
 });
-function generateRandomString(){
- var result           = '';
- var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
- var charactersLength = characters.length;
- for ( var i = 0; i < 22; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-  return result;
-}  
 
 
