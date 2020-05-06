@@ -8,6 +8,7 @@ const multer = require("multer");
 const bodyParser = require("body-parser");
 const sql = require("sqlite3").verbose();
 const fs = require("fs");
+const app = express();
 
 const postcardDB = new sql.Database("postcard.db");
 
@@ -81,10 +82,10 @@ app.post("/newPostcard", function(request, response, next) {
     }
   });
 });
-app.all("*", function(request, response) {
-  response.status(404);
-  response.send("This is not what you're looking for");
-});
+// app.all("*", function(request, response) {
+//   response.status(404);
+//   response.send("This is not what you're looking for");
+// });
 let storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, __dirname + "/images");
@@ -97,7 +98,6 @@ let storage = multer.diskStorage({
 let upload = multer({ storage: storage });
 
 // begin constructing the server pipeline
-const app = express();
 
 // Serve static files out of public directory
 app.use(express.static("public"));
