@@ -50,7 +50,19 @@ function handlePostcard(request, response, next) {
   });
 }
 app.get("/postcard", handlePostcard);
-let storage = multer.diskStorage({
+
+app.use(bodyParser.json());
+
+app.post("/newPostcard", function(request, response, next) {
+  console.log("Server recieved", request.body);
+  let message = request.body.message;
+  let image = request.body.image;
+  let color = request.body.color;
+  let font = request.body.font;
+  console.log("new postcard message", message, "image", image, "color", color, "font", font);
+  
+  cmd = "INSERT INTO PostcardTable ()"
+});let storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, __dirname + "/images");
   },
