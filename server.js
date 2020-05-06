@@ -8,12 +8,11 @@ const multer = require("multer");
 const bodyParser = require("body-parser");
 const sql = require("sqlite3").verbose();
 // const fs = require("fs");
-const app = express();
 
 const postcardDB = new sql.Database("postcard.db");
 
 let cmd =
-  " SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'PostcardTable' ";
+  " SELECT name FROM sqlite_master WHERE type ='table' AND name = 'PostcardTable' ";
 postcardDB.get(cmd, function(err, val) {
   console.log(err, val);
   if (val == undefined) {
@@ -26,7 +25,7 @@ postcardDB.get(cmd, function(err, val) {
 
 function createPostcardDB() {
   const cmd =
-    "CREATE TABLE PostcardTable ( rowIdNum INTEGER PRIMARY KEY, message TEXT, image TEXT, color TEXT, font TEXT)";
+    'CREATE TABLE PostcardTable ( rowIdNum INTEGER PRIMARY KEY, message TEXT, image TEXT, color TEXT, font TEXT)';
   postcardDB.run(cmd, function(err, val) {
     if (err) {
       console.log("Database creation failure", err.message);
@@ -36,7 +35,14 @@ function createPostcardDB() {
   });
 }
 
+
+const app = express();
+app.use(express.static("public"));
+app.use(bodyParser.json());
+
 function handlePostcard(request, response, next) {
+  //do url processing
+  
   let cmd = "SELECT * FROM PostcardTable";
   postcardDB.all(cmd, function(err, rows) {
     if (err) {
@@ -48,10 +54,13 @@ function handlePostcard(request, response, next) {
     }
   });
 }
-app.get("/postcard", handlePostcard);
+
+app.get("/", function (request, response) {
+  response.sendFile(__dirname + "/public/)
+})
+// app.get("/postcard", handlePostcard);
 
 
-app.use(bodyParser.json());
 
 app.post("/newPostcard", function(request, response, next) {
   console.log("Server recieved", request.body);
