@@ -1,4 +1,4 @@
-// server.js
+s// server.js
 // where your node app starts
 
 // include modules
@@ -23,9 +23,33 @@ postcardDB.get(cmd, function(err, val) {
   }
 });
 
-function createPostcardDB() {
-  const cmd = "CREATE TABLE PostcardTable ( rowIdNum INTEGER PRIMARY KEY, message TEXT, )"
+function createPostcardDB() {const cmd = "CREATE TABLE PostcardTable ( rowIdNum INTEGER PRIMARY KEY, message TEXT, image TEXT, color TEXT, font TEXT)"
+postcardDB.run(cmd, function(err,val) {
+  if(err) {
+    console.log("Database creation failure", err.message);
+  }
+  else {
+    console.log("Created database");
+  }
+});            
+
+
+
+function handlePostcard(request, response, next) {
+  let cmd = "SELECT * FROM PostcardTable";
+  postcardDB.all(cmd, function(err, rows) {
+    if(err) {
+      console.log("Database reading error", err.message);
+      next();
+    }
+    else {
+      response.json(rows);
+      console.log("rows", rows);
+    }
+    
+  });
 }
+app.get("/postcard", handlePostcard);
 let storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, __dirname + "/images");
@@ -70,6 +94,7 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
   } else throw "error";
 });
 
+
 // Handle a post request containing JSON
 app.use(bodyParser.json());
 // gets JSON data into req.body
@@ -96,3 +121,4 @@ app.post("/saveDisplay", function(req, res) {
 var listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);
 });
+i
