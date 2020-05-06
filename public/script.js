@@ -1,6 +1,8 @@
 "use strict";
+  // <script src="./displayScript.js"></script>
 
-generateRandomString();
+
+// generateRandomString();
 // Unicode characters we will use
 const diamond = "\u27e1";
 const cross = "\u2756";
@@ -102,6 +104,8 @@ document.querySelector('#save').addEventListener('click', () => {
     console.log(xmlhttp.responseText);
     // immediately switch to display view
     window.location = "../display.html";
+    // getPostcardFromSever();
+    
   }
   // all set up!  Send off the HTTP request
   xmlhttp.send(JSON.stringify(data));

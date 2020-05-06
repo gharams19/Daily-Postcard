@@ -36,12 +36,18 @@ function getPostcardFromSever() {
       let responseStr = xhr.responseText;
       console.log(responseStr);
       let postcardTable = JSON.parse(responseStr);
-      postcardMessage.innerText = postcardTable.
+      document.getElementById("message").innerText = postcardTable.message;
+      document.getElementById("cardImg").src = postcardTable.image;
+      document.querySelector(".postcard").style.backgroundColor = postcardTable.color;
+      document.getElementById("message").fontFamily = postcardTable.font;
     }
-  })
+    else {
+      console.log("Error fetching table");
+      console.log(xhr.responseText);
+    }
+  });
+  xhr.send();
 }
 
 
-// send off request
-xhr.send(null);
 
