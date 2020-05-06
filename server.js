@@ -81,6 +81,10 @@ app.post("/newPostcard", function(request, response, next) {
     }
   });
 });
+app.all("*", function(request, response) {
+  response.status(404);
+  response.send("This is not what you're looking for");
+});
 let storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, __dirname + "/images");
