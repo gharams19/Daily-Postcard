@@ -94,14 +94,14 @@ document.querySelector('#save').addEventListener('click', () => {
   
   // new HttpRequest instance 
   var xmlhttp = new XMLHttpRequest();   
-  xmlhttp.open("POST", '/saveDisplay');
+  xmlhttp.open("POST", '/newPostcard');
   // important to set this for body-parser
   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   // setup callback function
   xmlhttp.onloadend = function(e) {
     console.log(xmlhttp.responseText);
     // immediately switch to display view
-    window.location = "https://postcard-app.glitch.me/display.html";
+    window.location = "../display.html";
   }
   // all set up!  Send off the HTTP request
   xmlhttp.send(JSON.stringify(data));
@@ -125,7 +125,7 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
         // Get the server's response to the upload
         console.log(xhr.responseText);
         let newImage = document.querySelector("#cardImg");
-        newImage.src = "https://postcard-app.glitch.me/images/"+selectedFile.name;
+        newImage.src = "../images/"+selectedFile.name;
         newImage.style.display = 'block';
         document.querySelector('.image').classList.remove('upload');
         button.textContent = 'Replace Image';
