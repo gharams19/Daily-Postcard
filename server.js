@@ -85,14 +85,17 @@ app.post("/newPostcard", (req, resp) => {
 });
 
 app.get("/getPostcard", (req, resp) => {
-  let cmd = "SELECT last_insert_rowid()"
+  let cmd = "SELECT * FROM postcardTable WHERE id = "
+
   postcardDB.get(cmd, (err, row) => {
     if (err) {
     console.log("error has occured" , err.message);
   }
   else {
-      resp.send(row);
+    console.log(row);
+    resp.send(row);
     }
+    
     
   });
 });
