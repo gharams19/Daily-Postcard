@@ -25,7 +25,7 @@ postcardDB.get(cmd, function(err, val) {
 
 function createPostcardDB() {
   const cmd =
-    'CREATE TABLE postcardTable ( message TEXT, color TEXT, font TEXT, image TEXT, rString TEXT)';
+    'CREATE TABLE postcardTable ( rString TEXT PRIMARY KEY, message TEXT, color TEXT, font TEXT, image TEXT)';
   postcardDB.run(cmd, function(err, val) {
     if (err) {
       console.log("Database creation failure", err.message);
@@ -66,8 +66,8 @@ app.post("/newPostcard", (req, resp) => {
   let postcardImage = req.body.image;
   let postcardRString = generateRandomString();
 
-  cmd = "INSERT INTO postcardTable (message,color, font, image, rString ) VALUES (?,?,?,?,?) ";
-  postcardDB.run(cmd, postcardMessage, postcardColor, postcardFont, postcardImage, postcardRString,function(err) {
+  cmd = "INSERT INTO postcardTable (rString, message,color, font, image ) VALUES (?,?,?,?,?) ";
+  postcardDB.run(cmd,postcardRString, postcardMessage, postcardColor, postcardFont, postcardImage,function(err) {
     if (err) {
       console.log("DB insert error",err.message);
       //next();
