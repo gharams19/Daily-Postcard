@@ -26,8 +26,8 @@
 //   postcardMessage.innerText = data.message; 
 //   postcardMessage.className = data.font;
 //   document.querySelector(".postcard").style.backgroundColor = data.color;
-// }
-function getPostcardFromSever() {
+getPostcardFromServer(); 
+function getPostcardFromServer(){
   let url = "/getPostcard?id="
   let randString = document.getElementById("r").innerHTML;
   url = url + randString;
