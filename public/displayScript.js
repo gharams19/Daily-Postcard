@@ -29,7 +29,7 @@
 // }
 getPostcardFromSever();
 function getPostcardFromSever() {
-  let url = "/getPostcard"
+  let url = "/getPostcard?id=XXX"
   let xhr = new XMLHttpRequest;
   xhr.open("GET", url)
   xhr.addEventListener("load", function() {
