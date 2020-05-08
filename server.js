@@ -25,7 +25,7 @@ postcardDB.get(cmd, function(err, val) {
 
 function createPostcardDB() {
   const cmd =
-    'CREATE TABLE PostcardTable (id INTEGER PRIMARY KEY, message TEXT, color TEXT, font TEXT, image TEXT)';
+    'CREATE TABLE PostcardTable (rowIdNum INTEGER, message TEXT, color TEXT, font TEXT, image TEXT)';
   postcardDB.run(cmd, function(err, val) {
     if (err) {
       console.log("Database creation failure", err.message);
@@ -65,14 +65,14 @@ app.get("/", function (request, response) {
 
 app.post("/newPostcard", (req, resp) => {
   console.log("Server recieved",req.body);
-  // let postcardId = req.body.id;
+  let postcardId = req.body.id;
   let postcardMessage = req.body.message;
   let postcardColor = req.body.color;
   let postcardFont = req.body.font;
   let postcardImage = req.body.image;
   
-  cmd = "INSERT INTO postcardTable (message,color, font, image ) VALUES (?,?,?,?) ";
-  postcardDB.run(cmd,postcardMessage, postcardColor, postcardFont, postcardImage,function(err) {
+  cmd = "INSERT INTO postcardTable (rowIdNum, message,color, font, image ) VALUES (?,?,?,?,?) ";
+  postcardDB.run(cmd,postcardId, postcardMessage, postcardColor, postcardFont, postcardImage,function(err) {
     if (err) {
       console.log("DB insert error",err.message);
       //next();
@@ -86,7 +86,7 @@ app.post("/newPostcard", (req, resp) => {
 });
 
 app.get("/getPostcard", (req, resp) => {
-  let cmd = "SELECT * FROM postcardTable WHERE id = last_insert_rowid();"
+  let cmd = "SELECT * FROM postcardTable where rowIdNum = last_insert_rowid();"
 
   postcardDB.get(cmd, (err, row) => {
     if (err) {
