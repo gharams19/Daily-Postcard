@@ -40,32 +40,31 @@ const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.json());
 
-function handlePostcard(request, response, next) {
-  //do url processing
+// function handlePostcard(request, response, next) {
+//   //do url processing
   
-  let cmd = "SELECT * FROM PostcardTable";
-  postcardDB.all(cmd, function(err, rows) {
-    if (err) {
-      console.log("Database reading error", err.message);
-      next();
-    } else {
-      response.json(rows);
-      console.log("rows", rows);
-    }
-  });
-}
+//   let cmd = "SELECT * FROM PostcardTable";
+//   postcardDB.all(cmd, function(err, rows) {
+//     if (err) {
+//       console.log("Database reading error", err.message);
+//       next();
+//     } else {
+//       response.json(rows);
+//       console.log("rows", rows);
+//     }
+//   });
+// }
 
 app.get("/", function (request, response) {
   response.sendFile(__dirname + "/public/creator.html");
 });
 
-app.get("/postcard/data?*", handlePostcard);
+// app.get("/postcard/data?*", handlePostcard);
 
 
 
 app.post("/newPostcard", (req, resp) => {
   console.log("Server recieved",req.body);
-  // let postcardId = req.body.id;
   let postcardMessage = req.body.message;
   let postcardColor = req.body.color;
   let postcardFont = req.body.font;
@@ -84,6 +83,10 @@ app.post("/newPostcard", (req, resp) => {
 
   
 });
+
+app.get("/getPostcard", (req, resp) => {
+  postcardDB.get()
+})
 
 let storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -128,29 +131,6 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
   } else throw "error";
 });
 
-// Handle a post request containing JSON
-// app.use(bodyParser.json());
-// // gets JSON data into req.body
-// app.post("/saveDisplay", function(req, res) {
-//   console.log(req.body);
-//   // write the JSON into postcardData.json
-//   fs.writeFile(
-//     __dirname + "/public/postcardData.json",
-//     JSON.stringify(req.body),
-//     err => {
-//       if (err) {
-//         res.status(404).send("postcard not saved");
-//       } else {
-//         res.send("All well");
-//       }
-//     }
-//   );
-// });
-
-// The GET AJAX query is handled by the static server, since the
-// file postcardData.json is stored in /public
-
-// listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);
 });

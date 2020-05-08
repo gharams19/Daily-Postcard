@@ -126,7 +126,7 @@ function SharePostcard() {
   
   var data = {
     "message": message.innerText, 
-    "image": image, 
+    "image": img.src, 
     "color": backgroundColor,
     "font": fontFamily
   };
@@ -142,7 +142,7 @@ function SharePostcard() {
 
   // Sending data with the request
   xhr.send(JSON.stringify(data));
-  // location.href = "postcard-display.html";
+  location.href = "display.html";
 }
 // document.querySelector('#save').addEventListener('click', () => {
 //   let msg = document.querySelector('#message');
