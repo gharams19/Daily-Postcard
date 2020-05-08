@@ -93,8 +93,6 @@ function SharePostcard() {
   xhr.open("POST", url);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-  // Converting JSON data to string
-  // let postcardId = id;
   let message = document.querySelector('#message');
   let img = document.getElementById("cardImg");
   // let img = document.querySelector('#cardImg');

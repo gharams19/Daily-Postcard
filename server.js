@@ -40,26 +40,11 @@ const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.json());
 
-// function handlePostcard(request, response, next) {
-//   //do url processing
-  
-//   let cmd = "SELECT * FROM PostcardTable";
-//   postcardDB.all(cmd, function(err, rows) {
-//     if (err) {
-//       console.log("Database reading error", err.message);
-//       next();
-//     } else {
-//       response.json(rows);
-//       console.log("rows", rows);
-//     }
-//   });
-// }
 
 app.get("/", function (request, response) {
   response.sendFile(__dirname + "/public/creator.html");
 });
 
-// app.get("/postcard/data?*", handlePostcard);
 
 function generateRandomString() {
    var result           = '';
@@ -89,9 +74,10 @@ app.post("/newPostcard", (req, resp) => {
     } else {
       let newId = this.lastID; // the rowid of last inserted item
       resp.send("Got new item, inserted with rowID: "+newId);
+      resp.send(postcardRString);
     }
   });
-
+  
   
 });
 
