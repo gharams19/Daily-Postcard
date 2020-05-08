@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const sql = require("sqlite3").verbose();
 // const fs = require("fs");
 
-const postcardDB = new sql.Database("postcard.db");
+const postcardDB = new sql.Database("postCard.db");
 
 let cmd =
   " SELECT name FROM sqlite_master WHERE type ='table' AND name = 'PostcardTable' ";
@@ -25,7 +25,7 @@ postcardDB.get(cmd, function(err, val) {
 
 function createPostcardDB() {
   const cmd =
-    'CREATE TABLE PostcardTable (message TEXT, color TEXT, font TEXT)';
+    'CREATE TABLE PostcardTable (message TEXT, color TEXT, font TEXT, image TEXT)';
   postcardDB.run(cmd, function(err, val) {
     if (err) {
       console.log("Database creation failure", err.message);
@@ -69,10 +69,10 @@ app.post("/newPostcard", (req, resp) => {
   let postcardMessage = req.body.message;
   let postcardColor = req.body.color;
   let postcardFont = req.body.font;
-  // let postcardImage = req.body.image;
+  let postcardImage = req.body.image;
   
-  cmd = "INSERT INTO postcardTable (message,color, font ) VALUES (?,?,?) ";
-  postcardDB.run(cmd, postcardMessage, postcardColor, postcardFont,function(err) {
+  cmd = "INSERT INTO postcardTable (message,color, font, image ) VALUES (?,?,?,?) ";
+  postcardDB.run(cmd, postcardMessage, postcardColor, postcardFont, postcardImage,function(err) {
     if (err) {
       console.log("DB insert error",err.message);
       //next();
