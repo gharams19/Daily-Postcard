@@ -29,7 +29,11 @@
 // }
 getPostcardFromSever();
 function getPostcardFromSever() {
-  let url = "/getPostcard?id=XXX"
+  let url = "/getPostcard?id="
+  let randString = document.getElementById("r").innerHTML;
+  console.log(randString);
+  // url = url + r;
+  // console.log(url);
   let xhr = new XMLHttpRequest;
   xhr.open("GET", url)
   xhr.addEventListener("load", function() {

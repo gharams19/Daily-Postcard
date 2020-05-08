@@ -102,12 +102,13 @@ function SharePostcard() {
   };
   console.log(data);
   xhr.addEventListener("load", function() {
-    console.log("response is " ,  xhr.responseText);
+    // console.log(xhr.responseText);
+    document.getElementById("r").innerHTML = xhr.responseText;
   });
 
   // Sending data with the request
   xhr.send(JSON.stringify(data));
-  // location.href = "display.html";
+  location.href = "display.html";
 }
 
 // UPLOAD IMAGE
