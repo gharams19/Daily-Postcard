@@ -102,10 +102,10 @@ function SharePostcard() {
   };
   console.log(data);
   xhr.addEventListener("load", function() {
-    let rr =document.getElementById("r").innerHTML ;
-    console.log("r is ", rr);
+    // let rr =document.getElementById("r").innerHTML ;
+    // console.log("r is ", rr);
   
-    // document.getElementById("r").innerHTML = xhr.responseText;
+    document.getElementById("r").innerHTML = xhr.responseText;
     // console.log("resp is ",  xhr.responseText  ); 
   });
 

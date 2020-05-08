@@ -31,7 +31,7 @@ getPostcardFromSever();
 function getPostcardFromSever() {
   let url = "/getPostcard?id="
   let randString = document.getElementById("r").innerHTML;
-  console.log("Random string is ",randString);
+  // console.log("Random string is ",randString);
   // url = url + r;
   // console.log(url);
   let xhr = new XMLHttpRequest;
@@ -41,10 +41,10 @@ function getPostcardFromSever() {
       let responseStr = xhr.responseText;
       // console.log(responseStr);
       let postcardTable = JSON.parse(responseStr);
-      document.getElementById("message").innerText = postcardTable.message;
-      document.getElementById("cardImg").src = postcardTable.image;
-      document.querySelector(".postcard").style.backgroundColor = postcardTable.color;
-      document.getElementById("message").fontFamily = postcardTable.font;
+      document.getElementById("Dmessage").innerText = postcardTable.message;
+      document.getElementById("DcardImg").src = postcardTable.image;
+      document.querySelector(".Dpostcard").style.backgroundColor = postcardTable.color;
+      document.getElementById("Dmessage").fontFamily = postcardTable.font;
     }
     else {
       console.log("Error fetching table");
