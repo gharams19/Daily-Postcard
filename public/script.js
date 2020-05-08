@@ -1,15 +1,6 @@
 "use strict";
 
 
-function generateRandomString() {
-   var result           = '';
-   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-   var charactersLength = characters.length;
-   for ( var i = 0; i < 23; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
-}
 
 
 
@@ -105,10 +96,10 @@ function SharePostcard() {
   // Converting JSON data to string
   // let postcardId = id;
   let message = document.querySelector('#message');
-  let img = document.querySelector('#cardImg');
+  let img = document.getElementById("cardImg");
+  // let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
   let fontFamily = message.className;
-  let randString = generateRandomString();
 
   
   var data = {
@@ -116,7 +107,6 @@ function SharePostcard() {
     "image": img.src, 
     "color": backgroundColor,
     "font": fontFamily,
-    "rString": randString
   };
   console.log(data);
   xhr.addEventListener("load", function() {
@@ -157,6 +147,7 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
         newImage.style.display = 'block';
         document.querySelector('.image').classList.remove('upload');
         button.textContent = 'Replace Image';
+
     }
   
     button.textContent = 'Uploading...';

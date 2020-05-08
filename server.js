@@ -61,6 +61,15 @@ app.get("/", function (request, response) {
 
 // app.get("/postcard/data?*", handlePostcard);
 
+function generateRandomString() {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < 23; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
 
 
 app.post("/newPostcard", (req, resp) => {
@@ -70,7 +79,7 @@ app.post("/newPostcard", (req, resp) => {
   let postcardColor = req.body.color;
   let postcardFont = req.body.font;
   let postcardImage = req.body.image;
-  let postcardRString = req.body.rString;
+  let postcardRString = generateRandomString();
 
   cmd = "INSERT INTO postcardTable (message,color, font, image, rString ) VALUES (?,?,?,?,?) ";
   postcardDB.run(cmd, postcardMessage, postcardColor, postcardFont, postcardImage, postcardRString,function(err) {
