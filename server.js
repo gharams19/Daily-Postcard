@@ -25,7 +25,7 @@ postcardDB.get(cmd, function(err, val) {
 
 function createPostcardDB() {
   const cmd =
-    'CREATE TABLE postcardsTable (rowIdNum INTEGER PRIMARY KEY, message TEXT, color TEXT, font TEXT, image TEXT)';
+    'CREATE TABLE postcardsTable ( message TEXT, color TEXT, font TEXT, image TEXT)';
   postcardDB.run(cmd, function(err, val) {
     if (err) {
       console.log("Database creation failure", err.message);
@@ -86,8 +86,7 @@ app.post("/newPostcard", (req, resp) => {
 });
 
 app.get("/getPostcard", (req, resp) => {
-  let cmd = "SELECT * FROM postcardsTable ORDER BY rowIdNum DESC LIMIT 1"
-    // let cmd = "SELECT * FROM postcardsTable WHERE rowIdNum = last_insert_rowid()";
+  let cmd = "SELECT * FROM postcardsTable ORDER BY rowid DESC LIMIT 1"
 
 
   postcardDB.get(cmd, (err, row) => {
