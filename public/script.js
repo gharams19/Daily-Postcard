@@ -102,12 +102,12 @@ function SharePostcard() {
   };
   console.log(data);
   xhr.addEventListener("load", function() {
-    console.log(xhr.responseText);
+    console.log("response is " ,  xhr.responseText);
   });
 
   // Sending data with the request
   xhr.send(JSON.stringify(data));
-  location.href = "display.html";
+  // location.href = "display.html";
 }
 
 // UPLOAD IMAGE
@@ -137,3 +137,4 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
   // actually send the request
   xhr.send(formData);
 });
+ 
