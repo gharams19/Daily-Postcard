@@ -143,10 +143,12 @@ function SharePostcard() {
       console.log(xhr.responseText);
     }
   });
+    id+=1;
+  
+
 
   // Sending data with the request
   xhr.send(JSON.stringify(data));
-  id+=1;
   location.href = "display.html";
 }
 // document.querySelector('#save').addEventListener('click', () => {
