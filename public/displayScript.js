@@ -29,7 +29,7 @@
 getPostcardFromServer(); 
 function getPostcardFromServer(){
   let url = "/getPostcard?id="
-  let randString = document.getElementById("r").innerHTML;
+  let randString =  .getElementById("r").innerHTML;
   url = url + randString;
   // console.log(url);
   let xhr = new XMLHttpRequest;

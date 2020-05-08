@@ -82,7 +82,8 @@ app.post("/newPostcard", (req, resp) => {
 });
 
 app.get("/getPostcard", (req, resp) => {
-  let cmd = "SELECT * FROM postcardTable ORDER BY rowid DESC LIMIT 1"
+  let r = 
+  let cmd = "SELECT * FROM postcardTable WHERE rString = "
 
 
   postcardDB.get(cmd, (err, row) => {
