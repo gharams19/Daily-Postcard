@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 const sql = require("sqlite3").verbose();
 // const fs = require("fs");
 
-const postcardDB = new sql.Database("postCard.db");
+const postcardDB = new sql.Database("postcards.db");
 
 let cmd =
   " SELECT name FROM sqlite_master WHERE type ='table' AND name = 'PostcardTable' ";
@@ -65,6 +65,7 @@ app.get("/", function (request, response) {
 
 app.post("/newPostcard", (req, resp) => {
   console.log("Server recieved",req.body);
+  let id = this.lastId + 1;
   let postcardMessage = req.body.message;
   let postcardColor = req.body.color;
   let postcardFont = req.body.font;
@@ -85,7 +86,7 @@ app.post("/newPostcard", (req, resp) => {
 });
 
 app.get("/getPostcard", (req, resp) => {
-  let cmd = "SELECT * FROM postcardTable WHERE id = "
+  let cmd = "SELECT * FROM postcardTable WHERE id = last_insert_rowid();"
 
   postcardDB.get(cmd, (err, row) => {
     if (err) {
