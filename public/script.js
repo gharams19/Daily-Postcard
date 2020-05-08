@@ -103,8 +103,9 @@ function SharePostcard() {
   console.log(data);
   xhr.addEventListener("load", function() {
     
-  document.querySelector("#r").innetText = xhr.responseText;
-    // document.getElementById("r").innerText = xhr.responseText;
+  // document.querySelector("#r").innetText = xhr.responseText;
+    document.getElementById("r").innerText = xhr.responseText;
+    console.log(xhr.responseText);
   });
 
   // Sending data with the request

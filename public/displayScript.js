@@ -30,8 +30,7 @@
 function getPostcardFromSever() {
   let url = "/getPostcard?id="
   let randString = document.getElementById("r").innerHTML;
-  console.log("Random string is ",randString);
-  // url = url + r;
+  url = url + randString;
   // console.log(url);
   let xhr = new XMLHttpRequest;
   xhr.open("GET", url)
