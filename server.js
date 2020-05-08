@@ -70,7 +70,7 @@ app.post("/newPostcard", (req, resp) => {
   let postcardColor = req.body.color;
   let postcardFont = req.body.font;
   let postcardImage = req.body.image;
-  
+   
   cmd = "INSERT INTO postcardsTable (message,color, font, image ) VALUES (?,?,?,?) ";
   postcardDB.run(cmd, postcardMessage, postcardColor, postcardFont, postcardImage,function(err) {
     if (err) {
@@ -87,7 +87,8 @@ app.post("/newPostcard", (req, resp) => {
 
 app.get("/getPostcard", (req, resp) => {
   let cmd = "SELECT * FROM postcardsTable ORDER BY rowIdNum DESC LIMIT 1"
-  
+    // let cmd = "SELECT * FROM postcardsTable WHERE rowIdNum = last_insert_rowid()";
+
 
   postcardDB.get(cmd, (err, row) => {
     if (err) {
