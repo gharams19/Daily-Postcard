@@ -1,13 +1,18 @@
 "use strict";
 
-// function load() {
-//   getPostcardFromSever();
-// }
 
-var id = 0;
+function generateRandomString() {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < 23; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
 
 
-// generateRandomString();
+
 // Unicode characters we will use
 const diamond = "\u27e1";
 const cross = "\u2756";
@@ -86,28 +91,6 @@ colorBoxes.forEach((b, i) => {
   });
 });
 
-// function getPostcardFromSever() {
-//   let url = "/getPostcard"
-//   let xhr = new XMLHttpRequest;
-//   xhr.open("GET", url)
-//   xhr.addEventListener("load", function() {
-//     if(xhr.status == 200) {
-//       let responseStr = xhr.responseText;
-//       console.log(responseStr);
-//       let postcardTable = JSON.parse(responseStr);
-//       document.getElementById("message").innerText = postcardTable.message;
-//       document.getElementById("cardImg").src = postcardTable.image;
-//       document.querySelector(".postcard").style.backgroundColor = postcardTable.color;
-//       document.getElementById("message").fontFamily = postcardTable.font;
-//     }
-//     else {
-//       console.log("Error fetching table");
-//       console.log(xhr.responseText);
-//     }
-//   });
-//   xhr.send();
-// }
-
 // UPLOAD postcard data
 // When the user hits the button...
 
@@ -124,15 +107,16 @@ function SharePostcard() {
   let message = document.querySelector('#message');
   let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
-  let fontFamily = message.className
+  let fontFamily = message.className;
+  let randString = generateRandomString();
 
   
   var data = {
-    // "id" : postcardId,
     "message": message.innerText, 
     "image": img.src, 
     "color": backgroundColor,
-    "font": fontFamily
+    "font": fontFamily,
+    "rString": randString
   };
   console.log(data);
   xhr.addEventListener("load", function() {
@@ -143,7 +127,6 @@ function SharePostcard() {
       console.log(xhr.responseText);
     }
   });
-    id = id + 1;
   
 
 
@@ -151,33 +134,6 @@ function SharePostcard() {
   xhr.send(JSON.stringify(data));
   location.href = "display.html";
 }
-// document.querySelector('#save').addEventListener('click', () => {
-//   let msg = document.querySelector('#message');
-//   let img = document.querySelector('#cardImg');
-//   let data = {
-//     image: img.src,
-//     color: currentColor.style.backgroundColor,
-//     font: msg.className,
-//     message: msg.innerText
-//   }
-//   console.log(data);
-  
-//   // new HttpRequest instance 
-//   var xmlhttp = new XMLHttpRequest();   
-//   xmlhttp.open("POST", '/newPostcard');
-//   // important to set this for body-parser
-//   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-//   // setup callback function
-//   xmlhttp.onloadend = function(e) {
-//     console.log(xmlhttp.responseText);
-//     // immediately switch to display view
-//     window.location = "../display.html";
-//     getPostcardFromSever();
-    
-//   }
-//   // all set up!  Send off the HTTP request
-//   xmlhttp.send(JSON.stringify(data));
-// })
 
 // UPLOAD IMAGE
 document.querySelector('#imgUpload').addEventListener('change', () => {
@@ -208,5 +164,4 @@ document.querySelector('#imgUpload').addEventListener('change', () => {
     xhr.send(formData);
 });
 
-  // <script src="./displayScript.js"></script>
 
