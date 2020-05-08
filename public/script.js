@@ -120,7 +120,7 @@ function SharePostcard() {
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
   // Converting JSON data to string
-  let postcardId = id;
+  // let postcardId = id;
   let message = document.querySelector('#message');
   let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
@@ -128,7 +128,7 @@ function SharePostcard() {
 
   
   var data = {
-    "id" : postcardId,
+    // "id" : postcardId,
     "message": message.innerText, 
     "image": img.src, 
     "color": backgroundColor,
@@ -143,7 +143,7 @@ function SharePostcard() {
       console.log(xhr.responseText);
     }
   });
-    id+=1;
+    id = id + 1;
   
 
 
