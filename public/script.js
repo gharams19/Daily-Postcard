@@ -108,33 +108,69 @@ function getPostcardFromSever() {
 
 // UPLOAD postcard data
 // When the user hits the button...
-document.querySelector('#save').addEventListener('click', () => {
-  let msg = document.querySelector('#message');
-  let img = document.querySelector('#cardImg');
-  let data = {
-    image: img.src,
-    color: currentColor.style.backgroundColor,
-    font: msg.className,
-    message: msg.innerText
-  }
-  console.log(data);
+
+function SharePostcard() {
+  var xhr = new XMLHttpRequest();
+  var url = "/newPostcard";
+
+  // open a connection
+  xhr.open("POST", url);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+  // Converting JSON data to string
+  let message = document.querySelector('#message');
+  // let image = document.getElementById("serverImage").src;
+  let backgroundColor = currentColor.style.backgroundColor;
+  let fontFamily = message.className
+
   
-  // new HttpRequest instance 
-  var xmlhttp = new XMLHttpRequest();   
-  xmlhttp.open("POST", '/newPostcard');
-  // important to set this for body-parser
-  xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  // setup callback function
-  xmlhttp.onloadend = function(e) {
-    console.log(xmlhttp.responseText);
-    // immediately switch to display view
-    window.location = "../display.html";
-    getPostcardFromSever();
+  var data = {
+    "message": message.innerText, 
+    // "image": image, 
+    "color": backgroundColor,
+    "font": fontFamily
+  };
+  console.log(data);
+  xhr.addEventListener("load", function() {
+    if(xhr.status == 200) {
+      console.log(xhr.responseText);
+    }
+    else {
+      console.log(xhr.responseText);
+    }
+  });
+
+  // Sending data with the request
+  xhr.send(JSON.stringify(data));
+  // location.href = "postcard-display.html";
+}
+// document.querySelector('#save').addEventListener('click', () => {
+//   let msg = document.querySelector('#message');
+//   let img = document.querySelector('#cardImg');
+//   let data = {
+//     image: img.src,
+//     color: currentColor.style.backgroundColor,
+//     font: msg.className,
+//     message: msg.innerText
+//   }
+//   console.log(data);
+  
+//   // new HttpRequest instance 
+//   var xmlhttp = new XMLHttpRequest();   
+//   xmlhttp.open("POST", '/newPostcard');
+//   // important to set this for body-parser
+//   xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+//   // setup callback function
+//   xmlhttp.onloadend = function(e) {
+//     console.log(xmlhttp.responseText);
+//     // immediately switch to display view
+//     window.location = "../display.html";
+//     getPostcardFromSever();
     
-  }
-  // all set up!  Send off the HTTP request
-  xmlhttp.send(JSON.stringify(data));
-})
+//   }
+//   // all set up!  Send off the HTTP request
+//   xmlhttp.send(JSON.stringify(data));
+// })
 
 // UPLOAD IMAGE
 document.querySelector('#imgUpload').addEventListener('change', () => {

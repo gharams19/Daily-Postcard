@@ -25,7 +25,7 @@ postcardDB.get(cmd, function(err, val) {
 
 function createPostcardDB() {
   const cmd =
-    'CREATE TABLE PostcardTable ( rowIdNum INTEGER PRIMARY KEY, message TEXT, image TEXT, color TEXT, font TEXT)';
+    'CREATE TABLE PostcardTable (message TEXT, color TEXT, font TEXT)';
   postcardDB.run(cmd, function(err, val) {
     if (err) {
       console.log("Database creation failure", err.message);
@@ -63,38 +63,26 @@ app.get("/postcard/data?*", handlePostcard);
 
 
 
-app.post("/newPostcard", function(request, response, next) {
-  console.log("Server recieved", request.body);
-  let message = request.body.message;
-  let image = request.body.image;
-  let color = request.body.color;
-  let font = request.body.font;
-  console.log(
-    "new postcard message",
-    message,
-    "image",
-    image,
-    "color",
-    color,
-    "font",
-    font
-  );
-
-  cmd =
-    "INSERT INTO PostcardTable (message, image, color, font) VALUES (?,?,?,?)";
-  postcardDB.run(cmd, message, image, color, font, function(err) {
+app.post("/newPostcard", (req, resp) => {
+  console.log("Server recieved",req.body);
+  // let postcardId = req.body.id;
+  let postcardMessage = req.body.message;
+  let postcardColor = req.body.color;
+  let postcardFont = req.body.font;
+  // let postcardImage = req.body.image;
+  
+  cmd = "INSERT INTO postcardTable (message,color, font ) VALUES (?,?,?) ";
+  postcardDB.run(cmd, postcardMessage, postcardColor, postcardFont,function(err) {
     if (err) {
-      console.log("DB insert error", err.message);
-      next();
+      console.log("DB insert error",err.message);
+      //next();
     } else {
-      let newId = this.lastID;
-      response.send("Got new postcard, inserted with rowID: " + newId);
+      let newId = this.lastID; // the rowid of last inserted item
+      resp.send("Got new item, inserted with rowID: "+newId);
     }
   });
-});
-app.all("*", function(request, response) {
-  response.status(404);
-  response.send("This is not what you're looking for");
+
+  
 });
 
 let storage = multer.diskStorage({
