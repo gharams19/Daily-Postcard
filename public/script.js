@@ -119,14 +119,14 @@ function SharePostcard() {
 
   // Converting JSON data to string
   let message = document.querySelector('#message');
-  // let image = document.getElementById("serverImage").src;
+  let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
   let fontFamily = message.className
 
   
   var data = {
     "message": message.innerText, 
-    // "image": image, 
+    "image": image, 
     "color": backgroundColor,
     "font": fontFamily
   };
