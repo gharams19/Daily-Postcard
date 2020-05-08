@@ -102,15 +102,14 @@ function SharePostcard() {
   };
   console.log(data);
   xhr.addEventListener("load", function() {
-    // let rr =document.getElementById("r").innerHTML ;
-    // console.log("r is ", rr);
-  
-    document.getElementById("r").innerHTML = xhr.responseText;
-    // console.log("resp is ",  xhr.responseText  ); 
+    
+  document.querySelector("#r").innetText = xhr.responseText;
+    // document.getElementById("r").innerText = xhr.responseText;
   });
 
   // Sending data with the request
   xhr.send(JSON.stringify(data));
+
   // location.href = "display.html";
 }
 
@@ -141,4 +140,3 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
   // actually send the request
   xhr.send(formData);
 });
- 

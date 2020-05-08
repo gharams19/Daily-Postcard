@@ -27,11 +27,10 @@
 //   postcardMessage.className = data.font;
 //   document.querySelector(".postcard").style.backgroundColor = data.color;
 // }
-getPostcardFromSever();
 function getPostcardFromSever() {
   let url = "/getPostcard?id="
   let randString = document.getElementById("r").innerHTML;
-  // console.log("Random string is ",randString);
+  console.log("Random string is ",randString);
   // url = url + r;
   // console.log(url);
   let xhr = new XMLHttpRequest;
