@@ -1,14 +1,10 @@
 "use strict";
 
-
-
-
-
 // Unicode characters we will use
 const diamond = "\u27e1";
 const cross = "\u2756";
 
-// querySelector returns the first element that matches the 
+// querySelector returns the first element that matches the
 // given CSS selector; in this case, the first span with id "fonts"
 let currentFontIcon = document.querySelector("#fonts span");
 
@@ -16,7 +12,7 @@ let currentFontIcon = document.querySelector("#fonts span");
 document.querySelectorAll("#fonts input").forEach(i => {
   // if status of one button changes, this will be called
   i.addEventListener("change", () => {
-    // because these are radio buttons, i.checked is true for 
+    // because these are radio buttons, i.checked is true for
     // the one selected
     if (i.checked) {
       console.log("checked");
@@ -56,7 +52,6 @@ let currentColor = colorBoxes.item(0);
 colorBoxes.forEach((b, i) => {
   b.style.backgroundColor = colors[i];
 
-  
   b.addEventListener("click", () => {
     // colorBoxes.forEach((d) => {
     //   d.style.border = 'none';
@@ -93,30 +88,22 @@ function SharePostcard() {
   xhr.open("POST", url);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-  let message = document.querySelector('#message');
+  let message = document.querySelector("#message");
   let img = document.getElementById("cardImg");
   // let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
   let fontFamily = message.className;
 
-  
   var data = {
-    "message": message.innerText, 
-    "image": img.src, 
-    "color": backgroundColor,
-    "font": fontFamily,
+    message: message.innerText,
+    image: img.src,
+    color: backgroundColor,
+    font: fontFamily
   };
   console.log(data);
   xhr.addEventListener("load", function() {
-    if(xhr.status == 200) {
-      console.log(xhr.responseText);
-    }
-    else {
-      console.log(xhr.responseText);
-    }
+    console.log(xhr.responseText);
   });
-  
-
 
   // Sending data with the request
   xhr.send(JSON.stringify(data));
@@ -124,33 +111,29 @@ function SharePostcard() {
 }
 
 // UPLOAD IMAGE
-document.querySelector('#imgUpload').addEventListener('change', () => {
-  
-    // get the file with the file dialog box
-    const selectedFile = document.querySelector('#imgUpload').files[0];
-    // store it in a FormData object
-    const formData = new FormData();
-    formData.append('newImage',selectedFile, selectedFile.name);
-  
-    let button = document.querySelector('.btn');
+document.querySelector("#imgUpload").addEventListener("change", () => {
+  // get the file with the file dialog box
+  const selectedFile = document.querySelector("#imgUpload").files[0];
+  // store it in a FormData object
+  const formData = new FormData();
+  formData.append("newImage", selectedFile, selectedFile.name);
 
-    // build an HTTP request data structure
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "/upload", true);
-    xhr.onloadend = function(e) {
-        // Get the server's response to the upload
-        console.log(xhr.responseText);
-        let newImage = document.querySelector("#cardImg");
-        newImage.src = "../images/" +selectedFile.name;
-        newImage.style.display = 'block';
-        document.querySelector('.image').classList.remove('upload');
-        button.textContent = 'Replace Image';
+  let button = document.querySelector(".btn");
 
-    }
-  
-    button.textContent = 'Uploading...';
-    // actually send the request
-    xhr.send(formData);
+  // build an HTTP request data structure
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", "/upload", true);
+  xhr.onloadend = function(e) {
+    // Get the server's response to the upload
+    console.log(xhr.responseText);
+    let newImage = document.querySelector("#cardImg");
+    newImage.src = "../images/" + selectedFile.name;
+    newImage.style.display = "block";
+    document.querySelector(".image").classList.remove("upload");
+    button.textContent = "Replace Image";
+  };
+
+  button.textContent = "Uploading...";
+  // actually send the request
+  xhr.send(formData);
 });
-
-

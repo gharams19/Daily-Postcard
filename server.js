@@ -58,7 +58,7 @@ function generateRandomString() {
 
 
 app.post("/newPostcard", (req, resp) => {
-  console.log("Server recieved",req.body);
+  //  console.log("Server recieved",req.body);
   // let postcardId = req.body.id;
   let postcardMessage = req.body.message;
   let postcardColor = req.body.color;
@@ -72,10 +72,10 @@ app.post("/newPostcard", (req, resp) => {
       console.log("DB insert error",err.message);
       //next();
     } else {
-      let newId = this.lastID; // the rowid of last inserted item
-      resp.send("Got new item, inserted with rowID: "+newId);
+      // let newId = this.lastID; // the rowid of last inserted item
+      // resp.send("Got new item, inserted with rowID: "+newId);
       resp.send(postcardRString);
-    }
+     }
   });
   
   
