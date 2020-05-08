@@ -1,8 +1,10 @@
 "use strict";
 
-function load() {
-  getPostcardFromSever();
-}
+// function load() {
+//   getPostcardFromSever();
+// }
+
+var id = 0;
 
 
 // generateRandomString();
@@ -118,6 +120,7 @@ function SharePostcard() {
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
   // Converting JSON data to string
+  let postcardId = id;
   let message = document.querySelector('#message');
   let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
@@ -125,6 +128,7 @@ function SharePostcard() {
 
   
   var data = {
+    "id" : postcardId,
     "message": message.innerText, 
     "image": img.src, 
     "color": backgroundColor,
@@ -142,6 +146,7 @@ function SharePostcard() {
 
   // Sending data with the request
   xhr.send(JSON.stringify(data));
+  id+=1;
   location.href = "display.html";
 }
 // document.querySelector('#save').addEventListener('click', () => {
