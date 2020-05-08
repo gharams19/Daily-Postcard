@@ -11,8 +11,8 @@ const sql = require("sqlite3").verbose();
 
 const postcardDB = new sql.Database("postcards.db");
 
-let cmd =
-  " SELECT name FROM sqlite_master WHERE type ='table' AND name = 'PostcardTable' ";
+let cmd = 
+  " SELECT name FROM sqlite_master WHERE type ='table' AND name = 'postcardTable' ";
 postcardDB.get(cmd, function(err, val) {
   console.log(err, val);
   if (val == undefined) {
@@ -25,7 +25,7 @@ postcardDB.get(cmd, function(err, val) {
 
 function createPostcardDB() {
   const cmd =
-    'CREATE TABLE PostcardTable (rowIdNum INTEGER, message TEXT, color TEXT, font TEXT, image TEXT)';
+    'CREATE TABLE postcardTable (rowIdNum TEXT, message TEXT, color TEXT, font TEXT, image TEXT)';
   postcardDB.run(cmd, function(err, val) {
     if (err) {
       console.log("Database creation failure", err.message);
