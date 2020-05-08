@@ -27,6 +27,7 @@
 //   postcardMessage.className = data.font;
 //   document.querySelector(".postcard").style.backgroundColor = data.color;
 // }
+getPostcardFromSever();
 function getPostcardFromSever() {
   let url = "/getPostcard"
   let xhr = new XMLHttpRequest;

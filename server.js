@@ -85,8 +85,17 @@ app.post("/newPostcard", (req, resp) => {
 });
 
 app.get("/getPostcard", (req, resp) => {
-  postcardDB.get()
-})
+  let cmd = "SELECT last_insert_rowid()"
+  postcardDB.get(cmd, (err, row) => {
+    if (err) {
+    console.log("error has occured" , err.message);
+  }
+  else {
+      resp.send(row);
+    }
+    
+  });
+});
 
 let storage = multer.diskStorage({
   destination: function(req, file, cb) {
