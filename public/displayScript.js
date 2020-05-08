@@ -31,7 +31,7 @@ getPostcardFromSever();
 function getPostcardFromSever() {
   let url = "/getPostcard?id="
   let randString = document.getElementById("r").innerHTML;
-  console.log(randString);
+  console.log("Random string is ",randString);
   // url = url + r;
   // console.log(url);
   let xhr = new XMLHttpRequest;
@@ -39,7 +39,7 @@ function getPostcardFromSever() {
   xhr.addEventListener("load", function() {
     if(xhr.status == 200) {
       let responseStr = xhr.responseText;
-      console.log(responseStr);
+      // console.log(responseStr);
       let postcardTable = JSON.parse(responseStr);
       document.getElementById("message").innerText = postcardTable.message;
       document.getElementById("cardImg").src = postcardTable.image;
