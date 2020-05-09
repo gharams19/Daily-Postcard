@@ -83,7 +83,6 @@ app.post("/newPostcard", (req, resp) => {
 
 app.get("/getPostcard", (req, resp) => {
   let r = req.query.id;
-  console.log(r);
   let cmd = "SELECT * FROM postcardTable WHERE rString = '"+r+"'";
 
 
@@ -92,7 +91,6 @@ app.get("/getPostcard", (req, resp) => {
     console.log("error has occured" , err.message);
   }
   else {
-    console.log(row);
     resp.send(row);
     }
     

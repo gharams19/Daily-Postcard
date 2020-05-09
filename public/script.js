@@ -92,7 +92,7 @@ function SharePostcard() {
   let img = document.getElementById("cardImg");
   // let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
-  var fontFamily;
+  let fontFamily;
   if(message.className == "flower") {
     fontFamily = "Indie Flower";
   }
@@ -114,7 +114,6 @@ function SharePostcard() {
     color: backgroundColor,
     font: fontFamily
   };
-  console.log(data);
   xhr.addEventListener("load", function() {
     
   // document.querySelector("#r").innetText = xhr.responseText;
