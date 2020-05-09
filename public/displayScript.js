@@ -16,6 +16,7 @@ function getPostcardFromServer(){
   xhr.addEventListener("load", function() {
     if(xhr.status == 200) {
       let responseStr = xhr.responseText;
+      console.log(responseStr);
       let postcardTable = JSON.parse(responseStr);
       document.getElementById("Dmessage").innerText = postcardTable.message;
       document.getElementById("DcardImg").src = postcardTable.image;
