@@ -30,9 +30,10 @@ getPostcardFromServer();
 function getPostcardFromServer(){
   let url = "/getPostcard?id="
   var urlParams = new URLSearchParams(window.location.search);
+  let randString = urlParams.substring(3);
   // console.log(urlParams.toString());
   // let randString =  .getElementById("r").innerHTML;
-  // url = url + randString;
+  url = url + randString;
   // console.log(url);
   let xhr = new XMLHttpRequest;
   xhr.open("GET", url)

@@ -82,8 +82,8 @@ app.post("/newPostcard", (req, resp) => {
 });
 
 app.get("/getPostcard", (req, resp) => {
-  // let r = 
-  let cmd = "SELECT * FROM postcardTable WHERE rowid = 1  ";
+  let r = req.query;
+  let cmd = "SELECT * FROM postcardTable WHERE rString = r";
 
 
   postcardDB.get(cmd, (err, row) => {
