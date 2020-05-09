@@ -197,6 +197,8 @@ footer {
 }
 #popup {
   text-align: center;
+    position: relative;
+
 }
 #popup_box {
   background-color: white;
@@ -213,6 +215,13 @@ footer {
   color: black;
   font-weight: bold;
   font-size: 30px;
+}
+#X {
+  	position: absolute;
+	top: 0;
+	right: 0;
+/*   color: white; */
+  background-color:
 }
 
 @media screen and (max-width: 525px) {
