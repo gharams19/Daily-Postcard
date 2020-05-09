@@ -111,7 +111,7 @@ function SharePostcard() {
   // Sending data with the request
   xhr.send(JSON.stringify(data));
 
-  // location.href = "display.html";
+  location.href = "display.html";
 }
 
 // UPLOAD IMAGE
