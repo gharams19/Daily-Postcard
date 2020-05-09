@@ -1,5 +1,12 @@
 "use strict";
 
+function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
 // Unicode characters we will use
 const diamond = "\u27e1";
 const cross = "\u2756";
@@ -81,6 +88,7 @@ colorBoxes.forEach((b, i) => {
 // When the user hits the button...
 
 function SharePostcard() {
+  on();
   var xhr = new XMLHttpRequest();
   var url = "/newPostcard";
 
@@ -116,7 +124,6 @@ function SharePostcard() {
   xhr.addEventListener("load", function() {
     
   });
-
   // Sending data with the request
   xhr.send(JSON.stringify(data));
 
