@@ -92,7 +92,21 @@ function SharePostcard() {
   let img = document.getElementById("cardImg");
   // let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
-  let fontFamily = message.className;
+  var fontFamily;
+  if(message.className == "flower") {
+    fontFamily = "Indie Flower";
+  }
+  else if(message.className == "script") {
+        fontFamily = "Dancing Script";
+  }
+  else if(message.className == "cang") {
+        fontFamily = "Long Cang";
+  }
+  else {
+        fontFamily = "Homemade Apple";
+  }
+  
+  // let fontFamily = message.className.style.fo;
 
   var data = {
     message: message.innerText,
