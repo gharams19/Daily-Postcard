@@ -123,16 +123,14 @@ function SharePostcard() {
   };
   xhr.addEventListener("load", function() {
       let r = xhr.responseText;
-  console.log();
-
+    let popupUrl = "https://alike-grand-microwave.glitch.me/display.html?<br>id=" + r;
+  document.getElementById("popup_url").innerHTML = popupUrl;
     
   });
   // Sending data with the request
+
+  
   xhr.send(JSON.stringify(data));
-  let r = xhr.responseText;
-  console.log(r);
-  let popupUrl = "https://alike-grand-microwave.glitch.me/display.html?id=" + r;
-  document.getElementById("popup_url").innerHTML = popupUrl;
 
 }
 

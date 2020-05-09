@@ -206,7 +206,7 @@ footer {
   width: 50%;
   display: inline-block;
   margin-top: 250px;
-  padding-bottom: 250px;
+  padding-bottom: 150px;
   padding-top: 50px;
   border: 0px solid white;
   border-radius: 15px;
@@ -229,6 +229,12 @@ footer {
   margin-right: 20px;
   
 
+}
+#popup_url {
+  padding-top: 50px;
+  color: blue;
+  text-decoration: underline;
+  
 }
 
 @media screen and (max-width: 525px) {
