@@ -1,5 +1,8 @@
 "use strict";
 
+function openUrl() {
+  location.href = document.getElementById("popup_url").innerHTML;
+}
 function on() {
   document.getElementById("overlay").style.display = "block";
 }
@@ -123,7 +126,7 @@ function SharePostcard() {
   };
   xhr.addEventListener("load", function() {
       let r = xhr.responseText;
-    let popupUrl = "https://alike-grand-microwave.glitch.me/display.html?<br>id=" + r;
+    let popupUrl = "https://alike-grand-microwave.glitch.me/display.html?id=" + r;
   document.getElementById("popup_url").innerHTML = popupUrl;
     
   });
