@@ -84,7 +84,7 @@ app.post("/newPostcard", (req, resp) => {
 app.get("/getPostcard", (req, resp) => {
   let r = req.query.id;
   console.log(r);
-  let cmd = "SELECT * FROM postcardTable WHERE rString = r";
+  let cmd = "SELECT * FROM postcardTable WHERE rString = '"+r+"'";
 
 
   postcardDB.get(cmd, (err, row) => {
