@@ -190,6 +190,19 @@ footer {
   z-index: 2;
   cursor: pointer;
 }
+#popup {
+    text-align: center;
+
+}
+#popup_box {
+  background-color: white;
+  height: 100%;
+  width: 50%;
+    display: inline-block;
+
+  
+  
+}
 
 @media screen and (max-width: 525px) {
   main {
