@@ -3,37 +3,12 @@
 
 // It sends a GET request for the JSON file postcardData.json 
 
-// let xhr = new XMLHttpRequest();
-
-// xhr.open("GET", 'postcardData.json');
-// xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-// // set up callback function that will run when the HTTP response comes back
-// xhr.onloadend = function(e) {
-//   console.log(xhr.responseText);
-  
-//   // responseText is a string
-//   let data = JSON.parse(xhr.responseText);
-  
-//   // get the postcard data out of the object "data" and 
-//   // configure the postcard
-//   let postcardImage = document.getElementById("cardImg");
-//   postcardImage.style.display = 'block';
-//   postcardImage.src = data.image;
-//   let postcardMessage = document.getElementById("message");
-//   //postcardMessage.textContent = data.message;
-//   // textContent throws away newlines; so use innerText instead
-//   postcardMessage.innerText = data.message; 
-//   postcardMessage.className = data.font;
-//   document.querySelector(".postcard").style.backgroundColor = data.color;
 getPostcardFromServer(); 
 function getPostcardFromServer(){
   let url = "/getPostcard?id="
   var urlParams = new URLSearchParams(window.location.search);
   
   let randString = urlParams.toString().substring(3);
-  // console.log(urlParams.toString());
-  // let randString =  .getElementById("r").innerHTML;
   url = url + randString;
   // console.log(url);
   let xhr = new XMLHttpRequest;
@@ -41,7 +16,6 @@ function getPostcardFromServer(){
   xhr.addEventListener("load", function() {
     if(xhr.status == 200) {
       let responseStr = xhr.responseText;
-      // console.log(responseStr);
       let postcardTable = JSON.parse(responseStr);
       document.getElementById("Dmessage").innerText = postcardTable.message;
       document.getElementById("DcardImg").src = postcardTable.image;
