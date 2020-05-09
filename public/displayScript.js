@@ -18,12 +18,12 @@ function getPostcardFromServer(){
       let responseStr = xhr.responseText;
       let postcardTable = JSON.parse(responseStr);
 
-      console.log("fomnt is", postcardTable);
+      console.log("font is", postcardTable.font);
 
       document.getElementById("Dmessage").innerText = postcardTable.message;
       document.getElementById("DcardImg").src = postcardTable.image;
       document.querySelector(".Dpostcard").style.backgroundColor = postcardTable.color;
-      document.getElementById("Dmessage").fontFamily = postcardTable.font;
+      document.getElementById("Dmessage").style.fontFamily = postcardTable.font;
     }
     else {
       console.log("Error fetching table");
