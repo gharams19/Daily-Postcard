@@ -45,7 +45,8 @@ main {
   flex: 1;
 }
 
-.postcard, .Dpostcard {
+.postcard,
+.Dpostcard {
   /*   background: #eceeeb; */
   background: #e6e2cf;
   margin: 2em 0;
@@ -54,7 +55,8 @@ main {
   padding: 1em;
 }
 
-.image, .Dimage {
+.image,
+.Dimage {
   flex: 1;
   display: flex;
   flex-flow: column;
@@ -62,13 +64,15 @@ main {
   justify-content: space-between;
 }
 
-#cardImg, #DcardImg {
+#cardImg,
+#DcardImg {
   max-width: 100%;
   max-height: 100%;
   display: none;
 }
 
-.image form, .Dimage form {
+.image form,
+.Dimage form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,7 +113,8 @@ main {
   font-size: 1.25em;
 }
 
-#message, #Dmessage {
+#message,
+#Dmessage {
   min-height: 40vh;
   border-left: 1px solid black;
   flex: 1;
@@ -186,22 +191,28 @@ footer {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;
   cursor: pointer;
 }
 #popup {
-    text-align: center;
-
+  text-align: center;
 }
 #popup_box {
   background-color: white;
   height: 100%;
   width: 50%;
-    display: inline-block;
-
-  
-  
+  display: inline-block;
+  margin-top: 250px;
+  padding-bottom: 250px;
+  padding-top: 50px;
+  border: 0px solid white;
+  border-radius: 15px;
+}
+#popup_title {
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 @media screen and (max-width: 525px) {
@@ -209,7 +220,8 @@ footer {
     width: auto;
     margin: 1em;
   }
-  .postcard, .Dpostcard {
+  .postcard,
+  .Dpostcard {
     flex-flow: column;
     min-height: 60vh;
   }
@@ -222,7 +234,8 @@ footer {
     margin: 1em 0;
   }
 
-  #message, #Dmessage {
+  #message,
+  #Dmessage {
     border-top: 1px solid black;
     border-left: none;
     /*     height: 50%; */
