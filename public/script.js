@@ -106,7 +106,6 @@ function SharePostcard() {
         fontFamily = "Homemade Apple";
   }
   
-  // let fontFamily = message.className.style.fo;
 
   var data = {
     message: message.innerText,
@@ -116,9 +115,6 @@ function SharePostcard() {
   };
   xhr.addEventListener("load", function() {
     
-  // document.querySelector("#r").innetText = xhr.responseText;
-    document.getElementById("r").innerText = xhr.responseText;
-    console.log(xhr.responseText);
   });
 
   // Sending data with the request
