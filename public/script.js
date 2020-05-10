@@ -156,10 +156,9 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
 
   button.textContent = "Uploading...";
   // actually send the request
-  let imageUploaded = document.querySelector("#cardImg");
-  imageUploaded.src = "../images/" + selectedFile.name;
 
   xhr.send(formData);
+
 
 });
 

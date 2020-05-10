@@ -134,12 +134,7 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
     request.file.size,
     "bytes"
   );
-  if (request.file) {
-    // file is automatically stored in /images,
-    // even though we can't see it.
-    // We set this up when configuring multer
-    // response.end("recieved " + request.file.originalname);
-  } else throw "error";
+ 
   let path = request.file.path;
   let index = path.indexOf("/images");
   let imagePath = request.file.path.substring(index);
@@ -167,7 +162,6 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
     form.append("apiKey", apiKey);
     // stick the image into the formdata object
     form.append("storeImage", fs.createReadStream(__dirname + filename));
-    console.log("Form data is", form);
     // and send it off to this URL
     form.submit("http://ecs162.org:3000/fileUploadToAPI", function(
       err,
@@ -194,23 +188,18 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
             serverResponse.send(body);
             
           }
+           let path =  "/app/" + filename;
+            // fs.unlink(path);
         });
       } else {
         // didn't get APIres at all
         serverResponse.status(500); // internal server error
         serverResponse.send("Media server seems to be down.");
       }
+       
     });
   }
-   let path =  "/app/" + filename;
-            fs.unlink(path, err => {
-              if (err) {
-                console.error(err);
-                return;
-              }
-
-              //file removed
-            });
+ 
   
 }
 var listener = app.listen(process.env.PORT, function() {
