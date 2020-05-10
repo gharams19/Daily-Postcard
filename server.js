@@ -140,9 +140,9 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
     response.end("recieved " + request.file.originalname);
   } else throw "error";
 });
-app.get("/sendUploadToAPI", function(request, response){
-  console.log("request body is ", request);
-        sendMediaStore(request.body, request, response);
+app.get("/sendUploadToAPI", (req, resp) => {
+  console.log("request body is ", req);
+        sendMediaStore(req.body.image, req, resp);
         });
 
 function sendMediaStore(filename, serverRequest, serverResponse) {

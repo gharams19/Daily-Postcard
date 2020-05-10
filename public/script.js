@@ -183,6 +183,7 @@ function sendGetRequest(imageName) {
   var imageFile = {
     "image": imageName
   }
+  console.log("image file is", imageFile)
   // Actually send request to server
   xhr.send(JSON.stringify(imageFile));
 }
