@@ -16,9 +16,12 @@ function getPostcardFromServer() {
     if (xhr.status == 200) {
       let responseStr = xhr.responseText;
       let postcardTable = JSON.parse(responseStr);
-
+      console.log(postcardTable.image);
+      let imageSrc = postcardTable.image;
+      imageSrc = imageSrc.substring(7);
+      console.log(imageSrc);
       document.getElementById("Dmessage").innerText = postcardTable.message;
-      document.getElementById("DcardImg").src = postcardTable.image;
+      document.getElementById("DcardImg").src = imageSrc;
       document.querySelector(".Dpostcard").style.backgroundColor =
         postcardTable.color;
       document.getElementById("Dmessage").style.fontFamily = postcardTable.font;

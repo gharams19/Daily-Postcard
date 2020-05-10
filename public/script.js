@@ -146,9 +146,8 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
   xhr.open("POST", "/upload", true);
   xhr.onloadend = function(e) {
     // Get the server's response to the upload
-    console.log(xhr.responseText);
     let newImage = document.querySelector("#cardImg");
-    newImage.src = "../images/" + selectedFile.name;
+    newImage.src = "http://ecs162.org:3000/images/" + xhr.responseText;
     newImage.style.display = "block";
     document.querySelector(".image").classList.remove("upload");
     button.textContent = "Replace Image";
