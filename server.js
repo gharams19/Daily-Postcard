@@ -8,10 +8,12 @@ const multer = require("multer");
 const bodyParser = require("body-parser");
 const sql = require("sqlite3").verbose();
 const fs = require("fs");
+const FormData = require("form-data");
+
 
 const postcardDB = new sql.Database("Postcards.db");
 
-let cmd = 
+let cmd =
   " SELECT name FROM sqlite_master WHERE type ='table' AND name = 'postcardTable' ";
 postcardDB.get(cmd, function(err, val) {
   console.log(err, val);
@@ -25,7 +27,7 @@ postcardDB.get(cmd, function(err, val) {
 
 function createPostcardDB() {
   const cmd =
-    'CREATE TABLE postcardTable ( rString TEXT PRIMARY KEY, message TEXT, color TEXT, font TEXT, image TEXT)';
+    "CREATE TABLE postcardTable ( rString TEXT PRIMARY KEY, message TEXT, color TEXT, font TEXT, image TEXT)";
   postcardDB.run(cmd, function(err, val) {
     if (err) {
       console.log("Database creation failure", err.message);
@@ -35,30 +37,27 @@ function createPostcardDB() {
   });
 }
 
-
 const app = express();
 app.use(express.static("public"));
 app.use(bodyParser.json());
 
-
-app.get("/", function (request, response) {
+app.get("/", function(request, response) {
   response.sendFile(__dirname + "/public/creator.html");
 });
 
-
 function generateRandomString() {
-   var result           = '';
-   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-   var charactersLength = characters.length;
-   for ( var i = 0; i < 23; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-   }
-   return result;
+  var result = "";
+  var characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var charactersLength = characters.length;
+  for (var i = 0; i < 23; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
 }
 
-
 app.post("/newPostcard", (req, resp) => {
-   console.log("Server recieved",req.body);
+  console.log("Server recieved", req.body);
   // let postcardId = req.body.id;
   let postcardMessage = req.body.message;
   let postcardColor = req.body.color;
@@ -66,35 +65,38 @@ app.post("/newPostcard", (req, resp) => {
   let postcardImage = req.body.image;
   let postcardRString = generateRandomString();
 
-  cmd = "INSERT INTO postcardTable (rString, message,color, font, image ) VALUES (?,?,?,?,?) ";
-  postcardDB.run(cmd,postcardRString, postcardMessage, postcardColor, postcardFont, postcardImage,function(err) {
-    if (err) {
-      console.log("DB insert error",err.message);
-      //next();
-    } else {
-      // let newId = this.lastID; // the rowid of last inserted item
-      // resp.send("Got new item, inserted with rowID: "+newId);
-      resp.send(postcardRString);
-     }
-  });
-  
-  
+  cmd =
+    "INSERT INTO postcardTable (rString, message,color, font, image ) VALUES (?,?,?,?,?) ";
+  postcardDB.run(
+    cmd,
+    postcardRString,
+    postcardMessage,
+    postcardColor,
+    postcardFont,
+    postcardImage,
+    function(err) {
+      if (err) {
+        console.log("DB insert error", err.message);
+        //next();
+      } else {
+        // let newId = this.lastID; // the rowid of last inserted item
+        // resp.send("Got new item, inserted with rowID: "+newId);
+        resp.send(postcardRString);
+      }
+    }
+  );
 });
 
 app.get("/getPostcard", (req, resp) => {
   let r = req.query.id;
-  let cmd = "SELECT * FROM postcardTable WHERE rString = '"+r+"'";
-
+  let cmd = "SELECT * FROM postcardTable WHERE rString = '" + r + "'";
 
   postcardDB.get(cmd, (err, row) => {
     if (err) {
-    console.log("error has occured" , err.message);
-  }
-  else {
-    resp.send(row);
+      console.log("error has occured", err.message);
+    } else {
+      resp.send(row);
     }
-    
-    
   });
 });
 
@@ -145,11 +147,11 @@ app.post("/sendUploadToAPI", (req, resp) => {
   let imageSrc = req.body.image;
   let index = imageSrc.indexOf("/images/");
   let imageName = imageSrc.substring(index);
-  console.log(imageName);
-        sendMediaStore(req.body.image, req, resp);
-        });
+  sendMediaStore(imageName, req, resp);
+});
 
 function sendMediaStore(filename, serverRequest, serverResponse) {
+  console.log(filename);
   let apiKey = process.env.ECS162KEY;
   if (apiKey === undefined) {
     serverResponse.status(400);
@@ -157,21 +159,24 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
   } else {
     // we'll send the image from the server in a FormData object
     let form = new FormData();
-    
+
     // we can stick other stuff in there too, like the apiKey
     form.append("apiKey", apiKey);
     // stick the image into the formdata object
     form.append("storeImage", fs.createReadStream(__dirname + filename));
-    console.log("Form data is",form);
+    console.log("Form data is", form);
     // and send it off to this URL
-    form.submit("http://ecs162.org:3000/fileUploadToAPI", function(err, APIres) {
+    form.submit("http://ecs162.org:3000/fileUploadToAPI", function(
+      err,
+      APIres
+    ) {
       // did we get a response from the API server at all?
       if (APIres) {
         // OK we did
         console.log("API response status", APIres.statusCode);
         // the body arrives in chunks - how gruesome!
-        // this is the kind stream handling that the body-parser 
-        // module handles for us in Express.  
+        // this is the kind stream handling that the body-parser
+        // module handles for us in Express.
         let body = "";
         APIres.on("data", chunk => {
           body += chunk;
@@ -186,7 +191,8 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
             serverResponse.send(body);
           }
         });
-      } else { // didn't get APIres at all
+      } else {
+        // didn't get APIres at all
         serverResponse.status(500); // internal server error
         serverResponse.send("Media server seems to be down.");
       }
