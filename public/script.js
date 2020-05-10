@@ -137,8 +137,10 @@ function SharePostcard() {
 
 }
 
+
 // UPLOAD IMAGE
 document.querySelector("#imgUpload").addEventListener("change", () => {
+  let imageUploaded; 
   // get the file with the file dialog box
   const selectedFile = document.querySelector("#imgUpload").files[0];
   // store it in a FormData object
@@ -155,6 +157,7 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
     console.log(xhr.responseText);
     let newImage = document.querySelector("#cardImg");
     newImage.src = "../images/" + selectedFile.name;
+    imageUploaded = newImage.src;
     newImage.style.display = "block";
     document.querySelector(".image").classList.remove("upload");
     button.textContent = "Replace Image";
@@ -163,4 +166,23 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
   button.textContent = "Uploading...";
   // actually send the request
   xhr.send(formData);
+  sendGetRequest(imageUploaded);
 });
+
+function sendGetRequest(imageName) {
+  let xhr = new XMLHttpRequest;
+  // it's a GET request, it goes to URL /seneUploadToAPI
+  xhr.open("GET","sendUploadToAPI");
+  
+  // Add an event listener for when the HTTP response is loaded
+  xhr.addEventListener("load", function() {
+      if (xhr.status == 200) {  // success
+        console.log("succes!")
+      } else { // failure
+        console.log("failure!")
+      }
+  });
+  
+  // Actually send request to server
+  xhr.send();
+}
