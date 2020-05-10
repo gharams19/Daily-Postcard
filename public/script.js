@@ -163,28 +163,28 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
 
 });
 
-function sendImage(imageName) {
-  let xhr = new XMLHttpRequest();
-  // it's a GET request, it goes to URL /seneUploadToAPI
+// function sendImage(imageName) {
+//   let xhr = new XMLHttpRequest();
+//   // it's a GET request, it goes to URL /seneUploadToAPI
   
-  xhr.open("POST", "/sendUploadToAPI");
-  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+//   xhr.open("POST", "/sendUploadToAPI");
+//   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
 
-  // Add an event listener for when the HTTP response is loaded
-  xhr.addEventListener("load", function() {
-    if (xhr.status == 200) {
-      // success
-      console.log("succes!", xhr.responseText);
-    } else {
-      // failure
-      console.log("failure!", xhr.responseText);
-    }
-  });
+//   // Add an event listener for when the HTTP response is loaded
+//   xhr.addEventListener("load", function() {
+//     if (xhr.status == 200) {
+//       // success
+//       console.log("succes!", xhr.responseText);
+//     } else {
+//       // failure
+//       console.log("failure!", xhr.responseText);
+//     }
+//   });
 
-  var imageFile = {
-    "image": imageName
-  }
-  // Actually send request to server
-  xhr.send(JSON.stringify(imageFile));
-}
+//   var imageFile = {
+//     "image": imageName
+//   }
+//   // Actually send request to server
+//   xhr.send(JSON.stringify(imageFile));
+// }

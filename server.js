@@ -129,6 +129,11 @@ app.get("/", function(request, response) {
 
 // Handle a post request to upload an image.
 app.post("/upload", upload.single("newImage"), function(request, response) {
+  let path = request.file.path;
+  let index = path.indexOf("/images");
+  let imagePath = request.file.path.substring(index);
+  sendMediaStore(imagePath, request, response);
+
   console.log(
     "Recieved",
     request.file.originalname,
@@ -143,17 +148,16 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
   } else throw "error";
   
 });
-app.post("/sendUploadToAPI", (req, resp) => {
-  console.log("request body is ", req.body.image);
-  let imageSrc = req.body.image;
-  let index = imageSrc.indexOf("/images/");
-  let imageName = imageSrc.substring(index);
-  console.log(imageName);
-  sendMediaStore(imageName, req, resp);
-});
+// app.post("/sendUploadToAPI", (req, resp) => {
+//   console.log("request body is ", req.body.image);
+//   let imageSrc = req.body.image;
+//   let index = imageSrc.indexOf("/images/");
+//   let imageName = imageSrc.substring(index);
+//   console.log(imageName);
+//   sendMediaStore(imageName, req, resp);
+// });
 
 function sendMediaStore(filename, serverRequest, serverResponse) {
-  console.log(filename);
   let apiKey = process.env.ECS162KEY;
   if (apiKey === undefined) {
     serverResponse.status(400);
