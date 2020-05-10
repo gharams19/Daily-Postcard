@@ -63,9 +63,7 @@ colorBoxes.forEach((b, i) => {
   b.style.backgroundColor = colors[i];
 
   b.addEventListener("click", () => {
-    // colorBoxes.forEach((d) => {
-    //   d.style.border = 'none';
-    // })
+    
     currentColor.style.border = "none";
     b.style.border = "1px solid black";
     document.querySelector(".postcard").style.backgroundColor = colors[i];
@@ -101,7 +99,6 @@ function SharePostcard() {
 
   let message = document.querySelector("#message");
   let img = document.getElementById("cardImg");
-  // let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
   let fontFamily;
   if (message.className == "flower") {
@@ -162,28 +159,3 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
 
 });
 
-// function sendImage(imageName) {
-//   let xhr = new XMLHttpRequest();
-//   // it's a GET request, it goes to URL /seneUploadToAPI
-  
-//   xhr.open("POST", "/sendUploadToAPI");
-//   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-
-//   // Add an event listener for when the HTTP response is loaded
-//   xhr.addEventListener("load", function() {
-//     if (xhr.status == 200) {
-//       // success
-//       console.log("succes!", xhr.responseText);
-//     } else {
-//       // failure
-//       console.log("failure!", xhr.responseText);
-//     }
-//   });
-
-//   var imageFile = {
-//     "image": imageName
-//   }
-//   // Actually send request to server
-//   xhr.send(JSON.stringify(imageFile));
-// }

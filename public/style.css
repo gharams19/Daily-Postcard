@@ -70,7 +70,7 @@ main {
   display: none;
 }
 #DcardImg {
-    max-width: 100%;
+  max-width: 100%;
   max-height: 100%;
 }
 .image form,
@@ -199,8 +199,7 @@ footer {
 }
 #popup {
   text-align: center;
-    position: relative;
-
+  position: relative;
 }
 #popup_box {
   background-color: white;
@@ -219,9 +218,9 @@ footer {
   font-size: 30px;
 }
 #X {
-  	position: absolute;
-	top: 0;
-	right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
   color: white;
   background-color: rgba(0, 0, 0, 0);
   border: none;
@@ -229,14 +228,11 @@ footer {
   font-size: 40px;
   margin-top: 20px;
   margin-right: 20px;
-  
-
 }
 #popup_url {
   padding-top: 50px;
   color: blue;
   text-decoration: underline;
-  
 }
 
 @media screen and (max-width: 525px) {
@@ -262,7 +258,6 @@ footer {
   #Dmessage {
     border-top: 1px solid black;
     border-left: none;
-    /*     height: 50%; */
   }
 
   .edit {

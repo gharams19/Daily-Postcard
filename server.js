@@ -57,7 +57,6 @@ function generateRandomString() {
 
 app.post("/newPostcard", (req, resp) => {
   console.log("Server recieved", req.body);
-  // let postcardId = req.body.id;
   let postcardMessage = req.body.message;
   let postcardColor = req.body.color;
   let postcardFont = req.body.font;
@@ -78,8 +77,6 @@ app.post("/newPostcard", (req, resp) => {
         console.log("DB insert error", err.message);
         //next();
       } else {
-        // let newId = this.lastID; // the rowid of last inserted item
-        // resp.send("Got new item, inserted with rowID: "+newId);
         resp.send(postcardRString);
       }
     }
@@ -134,13 +131,12 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
     request.file.size,
     "bytes"
   );
- 
+
   let path = request.file.path;
   let index = path.indexOf("/images");
   let imagePath = request.file.path.substring(index);
   sendMediaStore(imagePath, request, response);
 });
-
 
 function sendMediaStore(filename, serverRequest, serverResponse) {
   let apiKey = process.env.ECS162KEY;
@@ -179,21 +175,17 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
           } else {
             serverResponse.status(200);
             serverResponse.send(body);
-            
           }
-          let path = "/app/" +filename;
-            // fs.unlink(path);
+          let path = "/app/" + filename;
+          fs.unlink(path);
         });
       } else {
         // didn't get APIres at all
         serverResponse.status(500); // internal server error
         serverResponse.send("Media server seems to be down.");
       }
-       
     });
   }
- 
-  
 }
 var listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);
