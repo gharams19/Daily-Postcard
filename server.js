@@ -58,7 +58,7 @@ function generateRandomString() {
 
 
 app.post("/newPostcard", (req, resp) => {
-  //  console.log("Server recieved",req.body);
+   console.log("Server recieved",req.body);
   // let postcardId = req.body.id;
   let postcardMessage = req.body.message;
   let postcardColor = req.body.color;
@@ -140,8 +140,8 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
     response.end("recieved " + request.file.originalname);
   } else throw "error";
 });
-app.get("/sendUploadToAPI", (req, resp) => {
-  console.log("request body is ", req);
+app.post("/sendUploadToAPI", (req, resp) => {
+  console.log("request body is ", req.body);
         sendMediaStore(req.body.image, req, resp);
         });
 

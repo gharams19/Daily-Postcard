@@ -167,7 +167,7 @@ function sendGetRequest(imageName) {
   console.log("image is", imageName);
   let xhr = new XMLHttpRequest();
   // it's a GET request, it goes to URL /seneUploadToAPI
-  xhr.open("GET", "sendUploadToAPI");
+  xhr.open("POST", "/sendUploadToAPI");
 
   // Add an event listener for when the HTTP response is loaded
   xhr.addEventListener("load", function() {
