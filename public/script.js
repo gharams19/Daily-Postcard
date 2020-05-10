@@ -165,8 +165,10 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
 
   button.textContent = "Uploading...";
   // actually send the request
+    sendGetRequest(imageUploaded);
+
+  
   xhr.send(formData);
-  sendGetRequest(imageUploaded);
 });
 
 function sendGetRequest(imageName) {
@@ -177,12 +179,12 @@ function sendGetRequest(imageName) {
   // Add an event listener for when the HTTP response is loaded
   xhr.addEventListener("load", function() {
       if (xhr.status == 200) {  // success
-        console.log("succes!")
+        console.log("succes!", xhr.responseText)
       } else { // failure
-        console.log("failure!")
+        console.log("failure!", xhr.responseText)
       }
   });
   
   // Actually send request to server
-  xhr.send();
+  xhr.send(imageName);
 }
