@@ -156,34 +156,13 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
 
   button.textContent = "Uploading...";
   // actually send the request
+  
 
   xhr.send(formData);
-  deleteImage()
 
 
 });
 
-function deleteImage(imagePath) {
-  let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/deleteImage");
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
- xhr.addEventListener("load", function() {
-    if (xhr.status == 200) {
-      // success
-      console.log("succes!", xhr.responseText);
-    } else {
-      // failure
-      console.log("failure!", xhr.responseText);
-    }
-  });
-
-  var imageFile = {
-    "image": imagePath
-  }
-  // Actually send request to server
-  xhr.send(JSON.stringify(imageFile));
-
-}
 // function sendImage(imageName) {
 //   let xhr = new XMLHttpRequest();
 //   // it's a GET request, it goes to URL /seneUploadToAPI

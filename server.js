@@ -141,9 +141,7 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
   sendMediaStore(imagePath, request, response);
 });
 
-app.post("/delete", function (request, response){
-  fs.unlink(request.body.image);
-})
+
 function sendMediaStore(filename, serverRequest, serverResponse) {
   let apiKey = process.env.ECS162KEY;
   if (apiKey === undefined) {
@@ -183,6 +181,7 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
             serverResponse.send(body);
             
           }
+          let path = "/app/" +filename;
             // fs.unlink(path);
         });
       } else {
