@@ -104,19 +104,15 @@ function SharePostcard() {
   // let img = document.querySelector('#cardImg');
   let backgroundColor = currentColor.style.backgroundColor;
   let fontFamily;
-  if(message.className == "flower") {
+  if (message.className == "flower") {
     fontFamily = "Indie Flower";
+  } else if (message.className == "script") {
+    fontFamily = "Dancing Script";
+  } else if (message.className == "cang") {
+    fontFamily = "Long Cang";
+  } else {
+    fontFamily = "Homemade Apple";
   }
-  else if(message.className == "script") {
-        fontFamily = "Dancing Script";
-  }
-  else if(message.className == "cang") {
-        fontFamily = "Long Cang";
-  }
-  else {
-        fontFamily = "Homemade Apple";
-  }
-  
 
   var data = {
     message: message.innerText,
@@ -125,22 +121,18 @@ function SharePostcard() {
     font: fontFamily
   };
   xhr.addEventListener("load", function() {
-      let r = xhr.responseText;
-    let popupUrl = "https://alike-grand-microwave.glitch.me/display.html?id=" + r;
-  document.getElementById("popup_url").innerHTML = popupUrl;
-    
+    let r = xhr.responseText;
+    let popupUrl =
+      "https://alike-grand-microwave.glitch.me/display.html?id=" + r;
+    document.getElementById("popup_url").innerHTML = popupUrl;
   });
   // Sending data with the request
 
-  
   xhr.send(JSON.stringify(data));
-
 }
-
 
 // UPLOAD IMAGE
 document.querySelector("#imgUpload").addEventListener("change", () => {
-  let imageUploaded; 
   // get the file with the file dialog box
   const selectedFile = document.querySelector("#imgUpload").files[0];
   // store it in a FormData object
@@ -157,7 +149,6 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
     console.log(xhr.responseText);
     let newImage = document.querySelector("#cardImg");
     newImage.src = "../images/" + selectedFile.name;
-    imageUploaded = newImage.src;
     newImage.style.display = "block";
     document.querySelector(".image").classList.remove("upload");
     button.textContent = "Replace Image";
@@ -165,26 +156,30 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
 
   button.textContent = "Uploading...";
   // actually send the request
-    sendGetRequest(imageUploaded);
+  let imageUploaded = document.querySelector("#cardImg");
+  imageUploaded.src = "../images/" + selectedFile.name;
 
-  
   xhr.send(formData);
+  sendGetRequest(imageUploaded.src);
 });
 
 function sendGetRequest(imageName) {
-  let xhr = new XMLHttpRequest;
+  console.log("image is", imageName);
+  let xhr = new XMLHttpRequest();
   // it's a GET request, it goes to URL /seneUploadToAPI
-  xhr.open("GET","sendUploadToAPI");
-  
+  xhr.open("GET", "sendUploadToAPI");
+
   // Add an event listener for when the HTTP response is loaded
   xhr.addEventListener("load", function() {
-      if (xhr.status == 200) {  // success
-        console.log("succes!", xhr.responseText)
-      } else { // failure
-        console.log("failure!", xhr.responseText)
-      }
+    if (xhr.status == 200) {
+      // success
+      console.log("succes!", xhr.responseText);
+    } else {
+      // failure
+      console.log("failure!", xhr.responseText);
+    }
   });
-  
+
   // Actually send request to server
   xhr.send(imageName);
 }
