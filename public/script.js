@@ -180,6 +180,9 @@ function sendGetRequest(imageName) {
     }
   });
 
+  var imageFile = {
+    "image": imageName
+  }
   // Actually send request to server
-  xhr.send(imageName);
+  xhr.send(JSON.stringify(imageFile));
 }
