@@ -141,7 +141,7 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
     // response.end("recieved " + request.file.originalname);
   } else throw "error";
   let path = request.file.path;
-  let index = path.indexOf("images");
+  let index = path.indexOf("/images");
   let imagePath = request.file.path.substring(index);
   sendMediaStore(imagePath, request, response);
 });
@@ -192,6 +192,7 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
           } else {
             serverResponse.status(200);
             serverResponse.send(body);
+            
           }
         });
       } else {
@@ -201,7 +202,16 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
       }
     });
   }
-  fs.unlink(filename);
+   let path =  "/app/" + filename;
+            fs.unlink(path, err => {
+              if (err) {
+                console.error(err);
+                return;
+              }
+
+              //file removed
+            });
+  
 }
 var listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);
