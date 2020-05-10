@@ -194,7 +194,7 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
             serverResponse.send(" Media server says: " + body);
           } else {
             serverResponse.status(200);
-            serverResponse.send(body);
+            // serverResponse.send(body);
           }
         });
       } else {
