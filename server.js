@@ -10,7 +10,6 @@ const sql = require("sqlite3").verbose();
 const fs = require("fs");
 const FormData = require("form-data");
 
-
 const postcardDB = new sql.Database("Postcards.db");
 
 let cmd =
@@ -129,11 +128,6 @@ app.get("/", function(request, response) {
 
 // Handle a post request to upload an image.
 app.post("/upload", upload.single("newImage"), function(request, response) {
-  let path = request.file.path;
-  let index = path.indexOf("/images");
-  let imagePath = request.file.path.substring(index);
-  sendMediaStore(imagePath, request, response);
-
   console.log(
     "Recieved",
     request.file.originalname,
@@ -144,14 +138,17 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
     // file is automatically stored in /images,
     // even though we can't see it.
     // We set this up when configuring multer
-    response.end("recieved " + request.file.originalname);
+    // response.end("recieved " + request.file.originalname);
   } else throw "error";
-  
+  let path = request.file.path;
+  let index = path.indexOf("images");
+  let imagePath = request.file.path.substring(index);
+  sendMediaStore(imagePath, request, response);
 });
 // app.post("/sendUploadToAPI", (req, resp) => {
 //   console.log("request body is ", req.body.image);
 //   let imageSrc = req.body.image;
-//   let index = imageSrc.indexOf("/images/");
+//   let index = imageSrc.indexOf("images/");
 //   let imageName = imageSrc.substring(index);
 //   console.log(imageName);
 //   sendMediaStore(imageName, req, resp);
@@ -194,7 +191,7 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
             serverResponse.send(" Media server says: " + body);
           } else {
             serverResponse.status(200);
-            // serverResponse.send(body);
+            serverResponse.send(body);
           }
         });
       } else {
@@ -204,6 +201,7 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
       }
     });
   }
+  fs.unlink(filename);
 }
 var listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);
