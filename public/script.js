@@ -160,14 +160,16 @@ document.querySelector("#imgUpload").addEventListener("change", () => {
   imageUploaded.src = "../images/" + selectedFile.name;
 
   xhr.send(formData);
-  sendGetRequest(imageUploaded.src);
+  sendImage(imageUploaded.src);
 });
 
-function sendGetRequest(imageName) {
-  console.log("image is", imageName);
+function sendImage(imageName) {
   let xhr = new XMLHttpRequest();
   // it's a GET request, it goes to URL /seneUploadToAPI
+  
   xhr.open("POST", "/sendUploadToAPI");
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
 
   // Add an event listener for when the HTTP response is loaded
   xhr.addEventListener("load", function() {
@@ -183,7 +185,6 @@ function sendGetRequest(imageName) {
   var imageFile = {
     "image": imageName
   }
-  console.log("image file is", imageFile)
   // Actually send request to server
   xhr.send(JSON.stringify(imageFile));
 }
