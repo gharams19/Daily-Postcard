@@ -140,15 +140,10 @@ app.post("/upload", upload.single("newImage"), function(request, response) {
   let imagePath = request.file.path.substring(index);
   sendMediaStore(imagePath, request, response);
 });
-// app.post("/sendUploadToAPI", (req, resp) => {
-//   console.log("request body is ", req.body.image);
-//   let imageSrc = req.body.image;
-//   let index = imageSrc.indexOf("images/");
-//   let imageName = imageSrc.substring(index);
-//   console.log(imageName);
-//   sendMediaStore(imageName, req, resp);
-// });
 
+app.post("/delete", function (request, response){
+  fs.unlink(request.body.image);
+})
 function sendMediaStore(filename, serverRequest, serverResponse) {
   let apiKey = process.env.ECS162KEY;
   if (apiKey === undefined) {
@@ -188,7 +183,6 @@ function sendMediaStore(filename, serverRequest, serverResponse) {
             serverResponse.send(body);
             
           }
-           let path =  "/app/" + filename;
             // fs.unlink(path);
         });
       } else {
